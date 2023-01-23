@@ -5,6 +5,10 @@ const FormInput = styled.input`
   border: 1px solid black;
   border-radius: 0;
   padding: 0.5em;
+
+  &:focus {
+    border-radius: 0;
+  }
 `;
 
 export { FormInput };
