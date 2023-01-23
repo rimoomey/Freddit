@@ -2,6 +2,7 @@
   --button-blue: #575797;
   --button-blue-shadow: #454579;
   --light-blue: #a9a9e9;
+  --grey: #a5a5a5;
 }
 
 body {
@@ -16,4 +17,8 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+p {
+  margin: 0.25em;
 }

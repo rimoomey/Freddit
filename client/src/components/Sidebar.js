@@ -11,7 +11,7 @@ const Aside = styled.aside`
   right: 0px;
   width: 20%;
   max-width: 250px;
-  border: 2px solid #999;
+  padding: 0 0.5em;
 `;
 
 export default function Sidebar() {
