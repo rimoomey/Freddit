@@ -1,24 +1,14 @@
-# README
+# Freddit
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Reddit Clone built for Flatiron Phase 4 Backend Project requirement.
 
-Things you may want to cover:
 
-* Ruby version
+# Day 1 | Models, Design, Framework
 
-* System dependencies
+# Day 2 | Home page, backend structure
 
-* Configuration
+# Day 3 | Starting testing, stretch goals
 
-* Database creation
+# Day 4 | Polish and final elements
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Day 5 | Build video presentation for send out to recruiters
