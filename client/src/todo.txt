@@ -5,7 +5,7 @@ R = Rimon
 X = Completed
 
 [S] - Home Page
-  [] - Header
+  [S] - Header
   [] - Login Panel
   [] - Post List
   [] - Submit a link
