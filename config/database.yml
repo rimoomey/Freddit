@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: Freddit_production
-  username: Freddit
-  password: <%= ENV["FREDDIT_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
