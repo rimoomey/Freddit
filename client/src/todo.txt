@@ -4,7 +4,7 @@ S = Scott
 R = Rimon
 X = Completed
 
-[] - Home Page
+[S] - Home Page
   [] - Header
   [] - Login Panel
   [] - Post List
