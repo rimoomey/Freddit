@@ -1,0 +1,22 @@
+KEY
+B = Ben
+S = Scott
+R = Rimon
+X = Completed
+
+[] - Home Page
+  [] - Header
+  [] - Login Panel
+  [] - Post List
+  [] - Submit a link
+  [] - Submit a text post
+[] - Signup Page
+[] - Not Found Page
+[] - Individual Post Page
+  [] - Post Itself (Image, Video, Etc.)
+  [] - Upvotes 
+  [] - Comments Section
+[] - Topic Page (subreddit)
+  [] - Login Panel
+  [] - Post List
+  [] - Submit links
