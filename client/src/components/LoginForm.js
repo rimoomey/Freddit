@@ -13,6 +13,7 @@ export default function LoginForm() {
 
   return (
     <LoginContainer>
+      <h1>Signup for Freddit</h1>
       <FormInput
         type="text"
         placeholder="username"
