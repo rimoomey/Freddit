@@ -21,14 +21,14 @@ const SignupDiv = styled.div`
   padding: 0 1em;
 `;
 
-export default function Header() {
+export default function Header({setShowLoginModal}) {
   return (
     <Head>
       <Icon src="https://play-lh.googleusercontent.com/nlptFyxNsb8J0g8ZLux6016kunduV4jCxIrOJ7EEy-IobSN1RCDXAJ6DTGP81z7rr5Zq" alt="icon" />
       <SignupDiv>
         {/* Signup */}
         <p>Want to join all the swell chaps at Freddit? Sign up today!</p>
-        <Button as="a">Become a Fredditor</Button>
+        <Button onClick={() => setShowLoginModal(true)}>Become a Fredditor</Button>
       </SignupDiv>
     </Head>
   );
