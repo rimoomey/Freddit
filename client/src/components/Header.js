@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '../styled-components/Button';
 import { Link } from 'react-router-dom';
+
+import SignupButton from './SignupButton';
 
 const Icon = styled.img`
   display: block;
@@ -22,7 +23,8 @@ const SignupDiv = styled.div`
   padding: 0 1em;
 `;
 
-export default function Header({setShowLoginModal}) {
+export default function Header() {
+
   return (
     <Head>
       <Link to="/">
@@ -31,7 +33,7 @@ export default function Header({setShowLoginModal}) {
       <SignupDiv>
         {/* Signup */}
         <p>Want to join all the swell chaps at Freddit? Sign up today!</p>
-        <Button onClick={() => setShowLoginModal(true)}>Become a Fredditor</Button>
+        <SignupButton />
       </SignupDiv>
     </Head>
   );
