@@ -4,14 +4,13 @@ S = Scott
 R = Rimon
 X = Completed
 
-[S] - Home Page
-  [S] - Header
-  [] - Login Panel
-  [] - Post List
-  [] - Submit a link
-  [] - Submit a text post
+[X] - Home Page
+  [X] - Header
+  [X] - Login Panel
+  [X] - Post List
+  [X] - Submit a link
 [] - Signup Page
-[] - Not Found Page
+[X] - Not Found Page
 [] - Individual Post Page
   [] - Post Itself (Image, Video, Etc.)
   [] - Upvotes 

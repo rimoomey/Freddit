@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button } from '../styled-components/Button';
+import { Link } from 'react-router-dom';
 
 const Icon = styled.img`
   display: block;
@@ -24,7 +25,9 @@ const SignupDiv = styled.div`
 export default function Header({setShowLoginModal}) {
   return (
     <Head>
-      <Icon src="https://play-lh.googleusercontent.com/nlptFyxNsb8J0g8ZLux6016kunduV4jCxIrOJ7EEy-IobSN1RCDXAJ6DTGP81z7rr5Zq" alt="icon" />
+      <Link to="/">
+        <Icon src="https://play-lh.googleusercontent.com/nlptFyxNsb8J0g8ZLux6016kunduV4jCxIrOJ7EEy-IobSN1RCDXAJ6DTGP81z7rr5Zq" alt="icon" />
+      </Link>
       <SignupDiv>
         {/* Signup */}
         <p>Want to join all the swell chaps at Freddit? Sign up today!</p>
