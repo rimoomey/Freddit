@@ -15,7 +15,6 @@ X = Completed
   [] - Post Itself (Image, Video, Etc.)
   [] - Upvotes 
   [] - Comments Section
-[] - Topic Page (subreddit)
-  [] - Login Panel
+[S] - Topic Page (subreddit)
   [] - Post List
   [] - Submit links

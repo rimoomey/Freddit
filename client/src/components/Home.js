@@ -10,7 +10,7 @@ export default function Home() {
     <main>
       <span>Popular posts</span>
       <NavBar />
-      <hr></hr>
+      <hr />
       <PostList posts={a} />
     </main>
   );
