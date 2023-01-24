@@ -11,7 +11,25 @@ class UsersController < ApplicationController
     render json: user, serializer: PrivateUserSerializer, status: :ok
   end
 
+  def create
+    user = User.create(user_params)
+    if user.valid?
+      session[:user_id] = user.id
+      return render json: user, serializer: ExpandedUserSerializer, status: :created
+    end
+
+    errors(user)
+  end
+
   private
+
+  def errors(user)
+    render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+  end
+
+  def user_params
+    params.permit([:username, :email, :password, :password_confirmation])
+  end
 
   def not_found
     render json: { error: 'User ID invalid' }, status: :not_found
