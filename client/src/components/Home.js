@@ -1,32 +1,17 @@
 import React from 'react';
-import styled from 'styled-components';
 
-import { PostLi } from '../styled-components/PostLi';
-import PostCard from './PostCard';
-
-const PostList = styled.ol`
-  list-style: none;
-  padding-left: 0px;
-`;
+import PostList from './PostList';
+import NavBar from './NavBar';
 
 export default function Home() {
   const a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
     <main>
-      <p>Popular posts</p>
+      <span>Popular posts</span>
+      <NavBar />
       <hr></hr>
-      <PostList>
-        {
-          a.map((_, index) => {
-            return (
-              <PostLi key={index}>
-                <PostCard position={index + 1} />
-              </PostLi>
-            );
-          })
-        }
-      </PostList>
+      <PostList posts={a} />
     </main>
   );
 }

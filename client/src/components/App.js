@@ -1,14 +1,13 @@
-import '../App.css'
-import { RouterProvider} from 'react-router-dom'
-import { createPortal } from 'react-dom'
-import router from '../router'
-import { useState } from'react'
+import '../App.css';
+import { createPortal } from 'react-dom';
+import { useState } from'react';
+import { Outlet } from 'react-router-dom';
 
-import Header from './Header'
-import Sidebar from './Sidebar'
-import LoginModal from './LoginModal'
+import Header from './Header';
+import Sidebar from './Sidebar';
+import LoginModal from './LoginModal';
 
-function App () {
+export default function App () {
   const [showLoginModal, setShowLoginModal] = useState(false)
   return (
     <>
@@ -18,9 +17,7 @@ function App () {
         <LoginModal onClose={() => setShowLoginModal(false)}/>,
         document.body
       )}
-      <RouterProvider router={router} />
+      <Outlet />
     </>
-  )
+  );
 }
-
-export default App
