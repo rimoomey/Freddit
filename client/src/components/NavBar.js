@@ -13,10 +13,10 @@ export default function NavBar() {
   return (
     <Nav>
       {items.map((n, i) =>
-        <>
+        <span key={i}>
           {i > 0 ? <span> | </span> : ''}
-          <NavLink key={i} to={`/fr/${n}`}>{n}</NavLink>
-        </>
+          <NavLink to={`/fr/${n}`}>{n}</NavLink>
+        </span>
       )}
     </Nav>
   );
