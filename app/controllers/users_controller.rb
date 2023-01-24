@@ -6,7 +6,9 @@ class UsersController < ApplicationController
 
   def show
     user = User.find(params[:id])
-    render json: user, serializer: ExpandedUserSerializer, status: :ok
+    return render json: user, serializer: ExpandedUserSerializer, status: :ok if user.id == session[:user_id]
+
+    render json: user, serializer: PrivateUserSerializer, status: :ok
   end
 
   private
