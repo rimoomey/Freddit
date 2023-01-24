@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import LoginForm from './LoginForm';
 import { Button } from '../styled-components/Button';
@@ -18,7 +19,9 @@ export default function Sidebar() {
   return (
     <Aside>
       <LoginForm />
-      <Button>Submit a new post</Button>
+      <Link to="/new-post">
+        <Button>Submit a new post</Button>
+      </Link>
     </Aside>
   );
 }

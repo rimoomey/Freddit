@@ -21,4 +21,8 @@ const Button = styled.button`
   }
 `;
 
-export { Button };
+const PostButton = styled(Button)`
+  margin: 0.5em;
+`;
+
+export { Button, PostButton };
