@@ -24,6 +24,18 @@ class PostsController < ApplicationController
     unauthorized
   end
 
+  def update
+    user = User.find_by(id: params[:user_id])
+    if session[:user_id] == user.id
+      post = Post.find(params[:id])
+      post.update(post_params)
+      return errors(post) unless post.valid?
+
+      return render json: post, status: :accepted
+    end
+    unauthorized
+  end
+
   def destroy
     user = User.find_by(id: params[:user_id])
     Post.find(params[:id]).destroy if session[:user_id] == user.id
