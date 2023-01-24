@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import PostList from './PostList';
@@ -21,7 +21,9 @@ export default function Topic() {
     <main>
       <TopicTitle>TOPIC NAME : {topicName} </TopicTitle>
       <p>This is an example of a topic description, instead of it being typed out like this I would hope it would be dynamically generated.</p>
-      <PostButton>Post to {topicName}</PostButton>
+      <Link to="new-post">
+        <PostButton>Post to {topicName}</PostButton>
+      </Link>
       <hr />
       <PostList posts={a} />
     </main>

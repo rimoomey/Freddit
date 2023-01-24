@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
 
 import { FormInput } from '../styled-components/FormInput';
 import { PostButton } from '../styled-components/Button';
@@ -28,6 +29,13 @@ const DEFAULT_FORM_DATA = {
 
 export default function PostForm() {
   const [formData, setFormData] = useState(DEFAULT_FORM_DATA);
+
+  const params = useParams();
+
+  useEffect(() => {
+    console.log(params);
+    setFormData(f => ({...f, topic: params['topic_name'] || ''}));
+  }, [params]);
 
   const handleChange = e => {
     const { name, value } = e.target;

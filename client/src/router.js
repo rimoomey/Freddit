@@ -25,6 +25,10 @@ const router = createBrowserRouter([
         element: <Topic />
       },
       {
+        path: 'fr/:topic_name/new-post',
+        element: <NewPost />
+      },
+      {
         path: 'fr/:topic_name/:post_id',
         element: <Post />
       },
