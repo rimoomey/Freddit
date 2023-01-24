@@ -15,6 +15,10 @@ class Post < ApplicationRecord
     posts.map(&:title)
   end
 
+  def voted?(current_user_id)
+    current_user_id == id
+  end
+
   private
 
   def default_values
