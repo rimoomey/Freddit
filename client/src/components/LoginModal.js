@@ -1,6 +1,6 @@
 import LoginForm from './LoginForm.js'
 import styled from 'styled-components'
-
+import { Button } from '../styled-components/Button'
 const LoginModalContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
@@ -13,14 +13,13 @@ const LoginModalContainer = styled.div`
   width: 250px;
   top: 70px;
   left: calc(50% - 125px);
-  bottom: 70px;
 `
 
 export default function LoginModal ({ onClose }) {
   return (
     <LoginModalContainer>
+      <Button onClick={onClose} style={{position: 'absolute', top: 10, right: 10}}>X</Button>
       <LoginForm />
-      <button onClick={onClose}>Close</button>
     </LoginModalContainer>
   )
 }

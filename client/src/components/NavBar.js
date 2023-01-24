@@ -9,7 +9,7 @@ const Nav = styled.nav`
 
 export default function NavBar() {
   const items = ['flatiron', 'coding', 'duck_pictures', 'reddit_h8rs'];
-
+  
   return (
     <Nav>
       {items.map((n, i) =>
