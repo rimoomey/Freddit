@@ -17,22 +17,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_24_160356) do
   create_table "comments", force: :cascade do |t|
     t.string "content"
     t.integer "num_likes"
-    t.string "likeable_type"
-    t.bigint "likeable_id"
     t.bigint "user_id", null: false
     t.bigint "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["likeable_type", "likeable_id"], name: "index_comments_on_likeable"
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "likeables_users", id: false, force: :cascade do |t|
-    t.bigint "likeable_id", null: false
-    t.bigint "user_id", null: false
-    t.index ["likeable_id", "user_id"], name: "index_likeables_users_on_likeable_id_and_user_id"
-    t.index ["user_id", "likeable_id"], name: "index_likeables_users_on_user_id_and_likeable_id"
+  create_table "likes", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "likeable_type"
+    t.bigint "likeable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -40,13 +40,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_24_160356) do
     t.string "content"
     t.integer "num_likes"
     t.string "thumbnail_url"
-    t.string "likeable_type"
-    t.bigint "likeable_id"
     t.bigint "user_id", null: false
     t.bigint "topic_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["likeable_type", "likeable_id"], name: "index_posts_on_likeable"
     t.index ["topic_id"], name: "index_posts_on_topic_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
