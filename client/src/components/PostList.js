@@ -10,19 +10,15 @@ const PostOrderedList = styled.ol`
 `;
 
 export default function PostList({ posts }) {
-  console.table(posts);
+  const postElements = posts.map((_, index) =>
+    <PostLi key={index}>
+      <PostCard position={index + 1} />
+    </PostLi>
+  );
 
   return (
     <PostOrderedList>
-      {
-        posts.map((_, index) => {
-          return (
-            <PostLi key={index}>
-              <PostCard position={index + 1} />
-            </PostLi>
-          );
-        })
-      }
+      {postElements}
     </PostOrderedList>
   );
 }

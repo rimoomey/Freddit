@@ -11,10 +11,10 @@ X = Completed
   [X] - Submit a link
 [] - Signup Page
 [X] - Not Found Page
-[] - Individual Post Page
+[S] - Individual Post Page
   [] - Post Itself (Image, Video, Etc.)
   [] - Upvotes 
   [] - Comments Section
 [S] - Topic Page (subreddit)
-  [] - Post List
-  [] - Submit links
+  [S] - Post List
+  [S] - Submit links

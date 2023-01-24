@@ -1,11 +1,16 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import styled from 'styled-components';
 
 import PostList from './PostList';
-import styled from 'styled-components';
+import { Button } from '../styled-components/Button';
 
 const TopicTitle = styled.h3`
   margin: 0.5em 0;
+`;
+
+const PostButton = styled(Button)`
+  margin-left: 1em;
 `;
 
 export default function Topic() {
@@ -16,6 +21,7 @@ export default function Topic() {
     <main>
       <TopicTitle>TOPIC NAME : {topicName} </TopicTitle>
       <p>This is an example of a topic description, instead of it being typed out like this I would hope it would be dynamically generated.</p>
+      <PostButton>Post to {topicName}</PostButton>
       <hr />
       <PostList posts={a} />
     </main>
