@@ -3,11 +3,17 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.0"
 
+# Active model serializer gem
+gem "active_model_serializers"
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.1"
 
 # use bcrypt for encryption
 gem "bcrypt", "~> 3.1.18"
+
+# use byebug for debugging
+gem "byebug"
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"

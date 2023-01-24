@@ -9,7 +9,8 @@ class User < ApplicationRecord
 
   before_save :downcase_email
 
-  has_many :posts
+  has_many :posts, as: :likeable
+  has_many :comments, as: :likeable
 
   private
 
