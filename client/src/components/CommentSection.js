@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 import Comment from './Comment';
+import CreateComment from './CreateComment';
+import SignupButton from './SignupButton';
 import { Section } from '../styled-components/Divs';
 
 const CommentList = styled.ul`
@@ -9,12 +12,16 @@ const CommentList = styled.ul`
 `;
 
 export default function CommentSection() {
+  const user = useSelector(state => state.user);
+
   const comments = [1, 2, 3, 4, 5].map(n =>
     <Comment key={n} />
   );
 
   return (
     <Section>
+      <h4>Want to add to the discussion?</h4>
+      {user.username ? <CreateComment /> : <SignupButton />}
       <h4>Comments</h4>
       <CommentList>
         {comments}

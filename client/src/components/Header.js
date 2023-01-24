@@ -2,10 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button } from '../styled-components/Button'
 import { Link } from 'react-router-dom'
-import { createPortal } from 'react-dom'
-import { useState } from 'react'
-
-import LoginModal from './LoginModal'
+import { useDispatch } from 'react-redux'
+import { showLoginModal } from '../features/loginModal/loginModalSlice'
 
 const Icon = styled.img`
   display: block;
@@ -26,9 +24,8 @@ const SignupDiv = styled.div`
   padding: 0 1em;
 `
 
-export default function Header ({ user, setUser }) {
-  const [showLoginModal, setShowLoginModal] = useState(false)
-
+export default function Header () {
+  const dispatch = useDispatch()
   // useEffect for setUser will pass into login modal
   return (
     <Head>
@@ -41,15 +38,8 @@ export default function Header ({ user, setUser }) {
       <SignupDiv>
         {/* Signup */}
         <p>Want to join all the swell chaps at Freddit? Sign up today!</p>
-        <Button onClick={() => setShowLoginModal(true)}>
-          Become a Fredditor
-        </Button>
+        <Button onClick={() => dispatch(showLoginModal())}>Become a Fredditor</Button>
       </SignupDiv>
-      {showLoginModal &&
-        createPortal(
-          <LoginModal onClose={() => setShowLoginModal(false)} />,
-          document.body
-        )}
     </Head>
   )
 }
