@@ -1,8 +1,9 @@
 class Post < ApplicationRecord
+  after_initialize :default_values
   validates :title, presence: true
-  validates :title, length: {maximum: 50}
+  validates :title, length: { maximum: 50 }
   validates :content, presence: true
-  validates :num_likes, numericality: {only_integer: true}
+  validates :num_likes, numericality: { only_integer: true }
 
   has_many :likes, as: :likeable
   has_many :users, through: :likes
@@ -12,5 +13,11 @@ class Post < ApplicationRecord
 
   def self.titles(posts)
     posts.map(&:title)
+  end
+
+  private
+
+  def default_values
+    self.num_likes ||= 1
   end
 end
