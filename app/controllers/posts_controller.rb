@@ -24,6 +24,13 @@ class PostsController < ApplicationController
     unauthorized
   end
 
+  def destroy
+    user = User.find_by(id: params[:user_id])
+    Post.find(params[:id]).destroy if session[:user_id] == user.id
+
+    unauthorized
+  end
+
   private
 
   def errors(post)
@@ -35,10 +42,10 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.permit([:title, :thumbnail_url, :content, :topic_id, :user_id])
+    params.permit([:title, :thumbnail_url, :content, :topic_id, :user_id, :id])
   end
 
   def not_found
-    render json: {error: "Post not found"}, status: :not_found
+    render json: { error: 'Post not found' }, status: :not_found
   end
 end
