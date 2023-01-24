@@ -7,6 +7,10 @@ class Post < ApplicationRecord
   has_many :likes, as: :likeable
   has_many :users, through: :likes
   has_many :comments
-  belongs_to :user
-  belongs_to :topic
+  belongs_to :user, optional: true
+  belongs_to :topic, optional: true
+
+  def self.titles(posts)
+    posts.map(&:title)
+  end
 end

@@ -5,8 +5,8 @@ class CreatePosts < ActiveRecord::Migration[7.0]
       t.string :content
       t.integer :num_likes
       t.string :thumbnail_url
-      t.references :user, null: false, foreign_key: true
-      t.references :topic, null: false, foreign_key: true
+      t.references :user, foreign_key: true
+      t.references :topic, foreign_key: true
 
       t.timestamps
     end

@@ -17,8 +17,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_24_160356) do
   create_table "comments", force: :cascade do |t|
     t.string "content"
     t.integer "num_likes"
-    t.bigint "user_id", null: false
-    t.bigint "post_id", null: false
+    t.bigint "user_id"
+    t.bigint "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
@@ -40,8 +40,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_24_160356) do
     t.string "content"
     t.integer "num_likes"
     t.string "thumbnail_url"
-    t.bigint "user_id", null: false
-    t.bigint "topic_id", null: false
+    t.bigint "user_id"
+    t.bigint "topic_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["topic_id"], name: "index_posts_on_topic_id"
