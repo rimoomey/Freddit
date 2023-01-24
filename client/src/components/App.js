@@ -1,28 +1,33 @@
-import React from 'react';
-import { createPortal } from 'react-dom';
-import { Outlet } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import '../App.css';
+import React, {useState} from 'react'
+import { createPortal } from 'react-dom'
+import { Outlet } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 
-import { hideLoginModal } from '../features/loginModal/loginModalSlice';
+import LoginModal from './LoginModal'
+import { hideLoginModal } from '../features/loginModal/loginModalSlice'
 
-import Header from './Header';
-import Sidebar from './Sidebar';
-import LoginModal from './LoginModal';
+import '../App.css'
+import Header from './Header'
+import Sidebar from './Sidebar'
 
 export default function App () {
-  const showLoginModal = useSelector(state => state.loginModal.show);
-  const dispatch = useDispatch();
+  const [user, setUser] = useState(null)
+  const showLoginModal = useSelector(state => state.loginModal.show)
+  const dispatch = useDispatch()
 
   return (
     <>
-      <Header />
+      <Header user={user} />
       <Sidebar />
-      {showLoginModal && createPortal(
-        <LoginModal onClose={() => dispatch(hideLoginModal())}/>,
-        document.body
-      )}
+      {showLoginModal &&
+        createPortal(
+          <LoginModal
+            setUser={setUser}
+            onClose={() => dispatch(hideLoginModal())}
+          />,
+          document.body
+        )}
       <Outlet />
     </>
-  );
+  )
 }
