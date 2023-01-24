@@ -6,12 +6,12 @@ class UsersController < ApplicationController
 
   def show
     user = User.find(params[:id])
-    render json: user, status: :ok
+    render json: user, serializer: ExpandedUserSerializer, status: :ok
   end
 
   private
 
   def not_found
-    render json: {error: "User ID invalid"}, status: :not_found
+    render json: { error: 'User ID invalid' }, status: :not_found
   end
 end
