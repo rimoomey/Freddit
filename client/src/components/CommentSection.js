@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Comment from './Comment';
+import CreateComment from './CreateComment';
 import { Section } from '../styled-components/Divs';
 
 const CommentList = styled.ul`
@@ -15,6 +16,8 @@ export default function CommentSection() {
 
   return (
     <Section>
+      <h4>Want to add to the discussion?</h4>
+      <CreateComment />
       <h4>Comments</h4>
       <CommentList>
         {comments}

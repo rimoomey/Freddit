@@ -9,12 +9,22 @@ X = Completed
   [X] - Login Panel
   [X] - Post List
   [X] - Submit a link
-[] - Signup Page
+[B] - Signup Page
 [X] - Not Found Page
-[S] - Individual Post Page
-  [] - Post Itself (Image, Video, Etc.)
-  [] - Upvotes 
-  [] - Comments Section
-[S] - Topic Page (subreddit)
-  [S] - Post List
-  [S] - Submit links
+[X] - Individual Post Page
+  [X] - Post Itself (Image, Video, Etc.)
+  [X] - Upvotes 
+  [X] - Comments Section
+  [S] - Create Comment
+[X] - Topic Page (subreddit)
+  [X] - Post List
+  [X] - Submit links
+[] - User Page
+  [] - profile info
+  [] - post lists
+  [] - comment lists
+[] - Create Post
+  [] - Post Title
+  [] - Post Subreddit
+  [] - Post Image
+  [] - Post Body
