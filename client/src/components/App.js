@@ -1,28 +1,19 @@
-import React from 'react';
-import { createPortal } from 'react-dom';
-import { Outlet } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React from 'react'
 
-import LoginModal from './LoginModal';
+import { Outlet } from 'react-router-dom'
 
-import '../App.css';
-import Header from './Header';
-import Sidebar from './Sidebar';
+import '../App.css'
+import Header from './Header'
+import Sidebar from './Sidebar'
+import LoginModal from './LoginModal'
 
 export default function App () {
-  const showLoginModal = useSelector(state => state.loginModal.show);
-
   return (
     <>
+      <LoginModal />
       <Header />
       <Sidebar />
-      {showLoginModal &&
-        createPortal(
-          <LoginModal />,
-          document.body
-        )
-      }
       <Outlet />
     </>
-  );
+  )
 }
