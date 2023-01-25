@@ -8,13 +8,11 @@ class User < ApplicationRecord
 
   before_save :downcase_email
 
-  has_many :posts
-  has_many :comments
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
   belongs_to :likeable, polymorphic: true, optional: true
 
   has_many :likes
-  # has_many :comments, through: :likes, source: :likeable, source_type: 'Comment'
-  # has_many :posts, class_name: 'Posts', through: :likes, source: :likeable, source_type: 'Post'
 
   def post_titles
     Post.titles(posts)
