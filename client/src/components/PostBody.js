@@ -11,8 +11,7 @@ const Img = styled.img`
 `;
 
 export default function PostBody({ post }) {
-  const { id, title, content, user, topic, num_likes: votes, created_at: postDate } = post;
-  console.log(post);
+  const { id, title, content, user, topic, num_likes: votes, created_at: postDate, thumbnail_url: img } = post;
 
   return (
     <Section as="article">
@@ -21,7 +20,7 @@ export default function PostBody({ post }) {
         <div>
           <h3>{title}</h3>
           <h4>Submitted to <Link to={`/fr/${topic.name}`}>{topic.name}</Link> by {user.username} on {postDate.substring(0, 10)}</h4>
-          <Img src="https://a.thumbs.redditmedia.com/bUKEZv1sh0YzDoFLv8WCZMuElZvAFWmX4d0a9kwtI68.jpg" alt={title} />
+          <Img src={img} alt={title} />
           <p>
             {content}
           </p>
