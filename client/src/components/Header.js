@@ -27,7 +27,6 @@ const SignupDiv = styled.div`
 export default function Header () {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user); // user stores user state data
-
   return (
     <Head>
       <Link to='/'>
@@ -38,6 +37,7 @@ export default function Header () {
       </Link>
       <SignupDiv>
         {/* Signup */}
+        {user.id ? <p> Logged in </p>: <p>Not logged in</p>}
         <p>Want to join all the swell chaps at Freddit? Sign up today!</p>
         <Button onClick={() => dispatch(showLoginModal())}>Become a Fredditor</Button>
       </SignupDiv>

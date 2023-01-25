@@ -15,10 +15,10 @@ const Aside = styled.aside`
   padding: 0 0.5em;
 `;
 
-export default function Sidebar({user}) {
+export default function Sidebar() {
   return (
     <Aside>
-      {user && <LoginForm />}
+      {false && <LoginForm />}
       <Link to="/new-post">
         <Button>Submit a new post</Button>
       </Link>

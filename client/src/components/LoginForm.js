@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react'
+import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
 
-import { login } from '../features/user/userSlice';
-import { FormInput } from '../styled-components/FormInput';
+import { login } from '../features/user/userSlice'
+import { FormInput } from '../styled-components/FormInput'
 
-const LoginContainer = styled.form`
+const NewUserContainer = styled.form`
   display: flex;
   flex-direction: column;
   gap: 0.25em;
@@ -16,11 +16,12 @@ export default function LoginForm () {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   function handleNewUser (e) {
     e.preventDefault()
-    fetch('/signup', {
+    debugger
+    fetch(`/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -28,18 +29,24 @@ export default function LoginForm () {
       body: JSON.stringify({
         username,
         password,
-        password_confirmation: passwordConfirmation
+        password_confirmation: passwordConfirmation,
+        email: `dummy${Math.random()}@gmail.com`
       })
+    }).then(r => {
+      if (r.ok) {
+        r.json().then(data => {
+          console.log(data)
+          dispatch(login(data))
+        })
+      } else {
+        r.json().then(data => {
+          console.error(data.errors)
+        })
+      }
     })
-      .then(r => r.json())
-      .then(data => {
-        console.log(data);
-        dispatch(login(data));
-      });
   }
-
   return (
-    <LoginContainer onSubmit={e => handleNewUser(e)}>
+    <NewUserContainer onSubmit={e => handleNewUser(e)}>
       <h1>Signup for Freddit</h1>
       <label htmlFor='username'>Username</label>
       <FormInput
@@ -66,6 +73,6 @@ export default function LoginForm () {
         onChange={e => setPasswordConfirmation(e.target.value)}
       />
       <FormInput type='submit' value='Login' />
-    </LoginContainer>
-  );
+    </NewUserContainer>
+  )
 }
