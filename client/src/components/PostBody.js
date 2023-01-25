@@ -11,18 +11,19 @@ const Img = styled.img`
 `;
 
 export default function PostBody({ post }) {
-  const { topic } = post;
+  const { id, title, content, user, topic, num_likes: votes, created_at: postDate } = post;
+  console.log(post);
 
   return (
     <Section as="article">
       <HDiv>
-        <Votes />
+        <Votes votes={votes}/>
         <div>
-          <h3>POST TITLE</h3>
-          <h4>Submitted to <Link to={`/fr/${topic}`}>{topic}</Link> by USERNAME on DD/MM/YYYY</h4>
-          <Img src="https://a.thumbs.redditmedia.com/bUKEZv1sh0YzDoFLv8WCZMuElZvAFWmX4d0a9kwtI68.jpg" alt="POST TITLE" />
+          <h3>{title}</h3>
+          <h4>Submitted to <Link to={`/fr/${topic.name}`}>{topic.name}</Link> by {user.username} on {postDate.substring(0, 10)}</h4>
+          <Img src="https://a.thumbs.redditmedia.com/bUKEZv1sh0YzDoFLv8WCZMuElZvAFWmX4d0a9kwtI68.jpg" alt={title} />
           <p>
-            Post body. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            {content}
           </p>
         </div>
       </HDiv>
