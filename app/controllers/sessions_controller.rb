@@ -1,4 +1,10 @@
 class SessionsController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :unauthorized
+  def show
+    user = User.find(session[:user_id])
+    render json: user, serializer: ExpandedUserSerializer, status: :ok
+  end
+
   def create
     user = User.find_by(username: params[:username])
 
@@ -16,8 +22,12 @@ class SessionsController < ApplicationController
 
   private
 
+  def unauthorized
+    render json: { errors: 'No user current logged in' }, status: :unauthorized
+  end
+
   def not_found
-    render json: { errors: ['User not found'] }, status: :not_found
+    render json: { error: 'User not found' }, status: :not_found
   end
 
   def incorrect_username_or_password
