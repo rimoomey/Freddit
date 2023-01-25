@@ -23,7 +23,7 @@ export default function Sidebar() {
 
   return (
     <Aside>
-      {user.id && <LoginForm />}
+      {user.id ? null : <LoginForm />}
       <Link to="/new-post">
         <Button>Submit a new post</Button>
       </Link>

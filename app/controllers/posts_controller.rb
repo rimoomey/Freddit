@@ -54,7 +54,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.permit([:title, :thumbnail_url, :content, :topic_name, :user_id, :id])
+    params.permit([:title, :thumbnail_url, :content, :user_id, :id])
   end
 
   def not_found

@@ -25,7 +25,7 @@ const DEFAULT_FORM_DATA = {
   topic: '',
   title: '',
   img: '',
-  text: '',
+  content: '',
 }
 
 export default function PostForm() {
@@ -35,8 +35,10 @@ export default function PostForm() {
   const params = useParams();
   const navigate = useNavigate();
 
+  console.log(user);
+
   useEffect(() => {
-    setFormData(f => ({...f, topic: params['topic_name'] || ''}));
+    setFormData(f => ({...f, topic: params['topic'] || ''}));
   }, [params]);
 
   const handleChange = e => {
@@ -49,18 +51,24 @@ export default function PostForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
+    console.log(formData);
     fetch(`/users/${user.id}/posts`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(formData)
+      body: JSON.stringify({
+        title: formData.title,
+        thumbnail_url: formData.img,
+        content: formData.content,
+        topic_name: formData.topic
+      })
     })
       .then(r => {
         if (r.ok) {
           r.json().then(data => {
             console.log(data);
-            navigate(`/fr/${data.topic.name}/${id}`);
+            navigate(`/fr/${data.topic.name}/${data.id}`);
           });
         } else {
           r.json().then(data => {
@@ -108,10 +116,10 @@ export default function PostForm() {
       <label htmlFor='textarea'>Post Body</label>
       <AutosizeTextarea
         id="textarea"
-        name="text"
+        name="content"
         minRows={5}
         maxRows={15}
-        value={formData.text}
+        value={formData.content}
         onChange={handleChange}
       />
       <PostButton as="input" type="submit" value="Publish" />
