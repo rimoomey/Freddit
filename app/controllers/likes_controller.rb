@@ -24,6 +24,10 @@ class LikesController < ApplicationController
 
   private
 
+  def unauthorized
+    render json: { error: 'You do not have permission to view this page' }, status: :unauthorized
+  end
+
   def errors(errors)
     render json: { errors: errors.full_messages }, status: :unprocessable_entity
   end
