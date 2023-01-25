@@ -1,5 +1,5 @@
 class ExpandedPostsSerializer < ActiveModel::Serializer
-  attributes :id, :content, :title, :num_likes, :voted?, :sorted_comments, :updated_at, :created_at
+  attributes :id, :content, :thumbnail_url, :title, :num_likes, :voted?, :sorted_comments, :updated_at, :created_at
   belongs_to :user
   belongs_to :topic
 
