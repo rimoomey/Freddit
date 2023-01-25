@@ -2,12 +2,12 @@ class PostsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   def index
     posts = Post.all
-    render json: posts, status: :ok
+    render json: posts, session_user_id: session[:user_id], status: :ok
   end
 
   def show
     post = Post.find(params[:id])
-    render json: post, serializer: ExpandedPostsSerializer, status: :ok
+    render json: post, session_user_id: session[:user_id], serializer: ExpandedPostsSerializer, status: :ok
   end
 
   def create

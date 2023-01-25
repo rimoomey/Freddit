@@ -7,7 +7,7 @@ class Post < ApplicationRecord
 
   has_many :likes, as: :likeable
   has_many :users, through: :likes
-  has_many :comments
+  has_many :comments, dependent: :destroy
   belongs_to :user, optional: true
   belongs_to :topic, optional: true
 

@@ -10,6 +10,15 @@ post3 = Post.create(title: "third post", content: "This is my third post!", num_
 topics = Topic.create([{name: "Dog Fun"}, {name: "Sports Ball"}])
 user1 = User.create(username: "rimoomey", email: "rimon@realsite.com", password: "blEddBloop")
 user2 = User.create(username: 'jay', email: 'jj@totallylegit.com', password: 'asdkfahd')
+comment1 = Comment.create(content: 'this is a comment', num_likes: 1)
+comment2 = Comment.create(content: 'this is a better comment', num_likes: 10)
+
+comment1.user = user1
+comment1.post = post1
+comment1.save
+comment2.user = user2
+comment2.post = post1
+comment2.save
 post1.user = user1
 post1.topic = topics[0]
 post1.save

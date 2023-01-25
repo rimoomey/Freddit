@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   end
   resources :posts, only: [:index, :show]
   resources :topics, only: [:index, :show]
+  resources :comments, only: [:index]
 
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
