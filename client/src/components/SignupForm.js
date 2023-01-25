@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react'
+import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
 
-import { login } from '../features/user/userSlice';
-import { FormInput } from '../styled-components/FormInput';
+import { login } from '../features/user/userSlice'
+import { FormInput } from '../styled-components/FormInput'
+
+import { hideLoginModal } from '../features/loginModal/loginModalSlice'
 
 const LoginContainer = styled.form`
   display: flex;
@@ -16,7 +18,19 @@ export default function LoginForm () {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
-  const dispatch = useDispatch();
+  const [email, setEmail] = useState('')
+  const [errors, setErrors] = useState([])
+  const dispatch = useDispatch()
+
+  function errorMap (errors) {
+    return (
+      <ul>
+        {errors.map(error => (
+          <li>{error}</li>
+        ))}
+      </ul>
+    )
+  }
 
   function handleNewUser (e) {
     e.preventDefault()
@@ -29,18 +43,21 @@ export default function LoginForm () {
         username,
         password,
         password_confirmation: passwordConfirmation,
-        email: 'test@gmail.com'
+        email
       })
+    }).then(r => {
+      if (r.ok) {
+        r.json().then(data => {
+          dispatch(login(data))
+          dispatch(hideLoginModal())
+        })
+      } else {
+        r.json().then(data => {
+          setErrors(data.errors)
+          console.log(data)
+        })
+      }
     })
-      .then(r => {
-        if (r.ok) {
-          r.json().then(data => {
-            dispatch(login(data));
-          })
-        } else {
-          r.json().then(data => console.log(data.errors));
-        }
-      });
   }
 
   return (
@@ -70,7 +87,15 @@ export default function LoginForm () {
         value={passwordConfirmation}
         onChange={e => setPasswordConfirmation(e.target.value)}
       />
+      <label htmlFor='email'>Email</label>
+      <FormInput
+        placeholder='email'
+        type='email'
+        value={email}
+        onChange={e => setEmail(e.target.value)}
+      />
+      {errors.length === 0 ? null : errorMap(errors) }
       <FormInput type='submit' value='Login' />
     </LoginContainer>
-  );
+  )
 }

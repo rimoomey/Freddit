@@ -4,6 +4,7 @@ import { Button } from '../styled-components/Button'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { showLoginModal } from '../features/loginModal/loginModalSlice'
+import { logout } from '../features/user/userSlice'
 
 const Icon = styled.img`
   display: block;
@@ -28,6 +29,11 @@ export default function Header () {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user) // user stores user state data
 
+  function handleLogout () {
+    fetch('/logout', {
+      method: 'DELETE'
+    }).then(() => dispatch(logout()))
+  }
   return (
     <Head>
       <Link to='/'>
@@ -36,7 +42,13 @@ export default function Header () {
           alt='icon'
         />
       </Link>
-      {user && (
+
+      {user.id ? (
+        <div>
+          <p>{user.username}</p>
+          <Button onClick={() => handleLogout()}>Logout</Button>
+        </div>
+      ) : (
         <SignupDiv>
           {/* Signup OR Signout */}
           <p>Want to join all the swell chaps at Freddit? Sign up today!</p>
