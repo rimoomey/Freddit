@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux';
 
 import LoginModal from './LoginModal';
 
-import '../App.css'
-import Header from './Header'
-import Sidebar from './Sidebar'
+import '../App.css';
+import Header from './Header';
+import Sidebar from './Sidebar';
 
 export default function App () {
   const showLoginModal = useSelector(state => state.loginModal.show);
