@@ -24,7 +24,7 @@ export default function LoginForm () {
 
   function errorMap (errors) {
     return (
-      <ul>
+      <ul style={{ color: 'red' }}>
         {errors.map(error => (
           <li>{error}</li>
         ))}
@@ -53,8 +53,7 @@ export default function LoginForm () {
         })
       } else {
         r.json().then(data => {
-          setErrors(data.errors)
-          console.log(data)
+          setErrors(data.error)
         })
       }
     })
@@ -94,7 +93,7 @@ export default function LoginForm () {
         value={email}
         onChange={e => setEmail(e.target.value)}
       />
-      {errors.length === 0 ? null : errorMap(errors) }
+      {errors.length === 0 ? null : errorMap(errors)}
       <FormInput type='submit' value='Login' />
     </LoginContainer>
   )

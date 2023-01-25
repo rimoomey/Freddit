@@ -15,7 +15,9 @@ const LoginUserContainer = styled.form`
 export default function LoginForm () {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState(null)
   const dispatch = useDispatch()
+
 
   function handleLoginUser (e) {
     e.preventDefault()
@@ -34,7 +36,7 @@ export default function LoginForm () {
           dispatch(login(data))
         })
       } else {
-        r.json().then(data => console.log(data.errors))
+        r.json().then(data => setError(data.error))
       }
     })
   }
@@ -55,6 +57,7 @@ export default function LoginForm () {
         onChange={e => setPassword(e.target.value)}
       />
       <FormInput type='submit' value='Login' />
+      <p style={{color: 'red'}}>{error ? `⚠️ ${error}` : null}</p>
     </LoginUserContainer>
   )
 }
