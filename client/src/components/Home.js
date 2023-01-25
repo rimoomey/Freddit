@@ -4,14 +4,25 @@ import PostList from './PostList';
 import NavBar from './NavBar';
 
 export default function Home() {
-  const a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    fetch('/posts')
+      .then(r => {
+        if (r.ok) {
+          r.json().then(setPosts);
+        } else {
+          r.json().then(console.log);
+        }
+      })
+  }, []);
 
   return (
     <main>
       <span>Popular posts</span>
       <NavBar />
       <hr />
-      <PostList posts={a} />
+      <PostList posts={posts} />
     </main>
   );
 }
