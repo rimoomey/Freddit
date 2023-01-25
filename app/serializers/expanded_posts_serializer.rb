@@ -1,6 +1,5 @@
 class ExpandedPostsSerializer < ActiveModel::Serializer
-  attributes :id, :content, :title, :num_likes, :voted?, :sorted_comments, :updated_at, :created_at
-  # has_many :comments, serializer: CommentSerializer
+  attributes :id, :content, :thumbnail_url, :title, :num_likes, :voted?, :sorted_comments, :updated_at, :created_at
   belongs_to :user
   belongs_to :topic
 
@@ -10,9 +9,9 @@ class ExpandedPostsSerializer < ActiveModel::Serializer
       {
         id: comment.id,
         content: comment.content,
-        comment: comment.num_likes,
+        num_likes: comment.num_likes,
         created_at: comment.created_at,
-        user_id: comment.user_id,
+        user: user_info(comment.user),
         post_id: comment.post_id
       }
     end
@@ -28,5 +27,13 @@ class ExpandedPostsSerializer < ActiveModel::Serializer
       return true if like.likeable_id == object.id
     end
     false
+  end
+
+  private
+
+  def user_info(user)
+    return nil if user.nil?
+
+    { id: user.id, username: user.username }
   end
 end

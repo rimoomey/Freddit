@@ -35,10 +35,8 @@ export default function PostForm() {
   const params = useParams();
   const navigate = useNavigate();
 
-  console.log(user);
-
   useEffect(() => {
-    setFormData(f => ({...f, topic: params['topic'] || ''}));
+    setFormData(f => ({...f, topic: params['topic_name'] || ''}));
   }, [params]);
 
   const handleChange = e => {
@@ -67,7 +65,6 @@ export default function PostForm() {
       .then(r => {
         if (r.ok) {
           r.json().then(data => {
-            console.log(data);
             navigate(`/fr/${data.topic.name}/${data.id}`);
           });
         } else {

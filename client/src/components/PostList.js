@@ -10,9 +10,9 @@ const PostOrderedList = styled.ol`
 `;
 
 export default function PostList({ posts }) {
-  const postElements = posts.map((_, index) =>
+  const postElements = posts.map((p, index) =>
     <PostLi key={index}>
-      <PostCard position={index + 1} />
+      <PostCard position={index + 1} post={p} />
     </PostLi>
   );
 

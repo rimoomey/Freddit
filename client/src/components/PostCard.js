@@ -33,18 +33,19 @@ const PostDetails = styled.p`
   padding-left: 0.5em;
 `;
 
-export default function PostCard({ position }) {
+export default function PostCard({ position, post }) {
+  const { id, title, thumbnail_url: img, created_at: postDate, user, topic, num_likes: votes } = post;
 
   return (
     <PostContainer>
       <Ranking>{position}</Ranking>
-      <Votes />
-      <MyLink to='/fr/topic/1'>
-        <PostThumbnail src="https://a.thumbs.redditmedia.com/bUKEZv1sh0YzDoFLv8WCZMuElZvAFWmX4d0a9kwtI68.jpg" alt="thumbnail" />
+      <Votes votes={votes} />
+      <MyLink to={`/fr/${topic?.name || 'topic'}/${id}`}>
+        <PostThumbnail src={img} alt="thumbnail" />
         <section>
-          <PostTitle>POST TITLE: Lorem Ipsum or something</PostTitle>
+          <PostTitle>{title}</PostTitle>
           <PostDetails>
-            submitted/updated on DATE by USER to TOPIC 
+            submitted on {postDate.substring(0, 10)} by {user.username} to {topic?.name || 'UNKNOWN'}
           </PostDetails>
         </section>
       </MyLink>

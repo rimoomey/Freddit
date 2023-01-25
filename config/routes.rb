@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :create]
   resources :users do
     resources :posts, only: [:index, :create, :destroy, :update]
+    resources :comments, only: [:index, :create]
+    resources :likes, only: [:index]
   end
   resources :posts, only: [:index, :show]
   resources :posts do

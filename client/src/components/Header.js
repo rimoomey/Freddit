@@ -4,13 +4,14 @@ import { Button } from '../styled-components/Button'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { showLoginModal } from '../features/loginModal/loginModalSlice'
+import logo from '../assets/fr-logo.png';
 import { logout } from '../features/user/userSlice'
 
 const Icon = styled.img`
   display: block;
   width: 100%;
   max-width: 5rem;
-  margin: 0 1em;
+  margin: 0.5em 1em;
 `
 
 const Head = styled.header`
@@ -38,7 +39,7 @@ export default function Header () {
     <Head>
       <Link to='/'>
         <Icon
-          src='https://play-lh.googleusercontent.com/nlptFyxNsb8J0g8ZLux6016kunduV4jCxIrOJ7EEy-IobSN1RCDXAJ6DTGP81z7rr5Zq'
+          src={logo}
           alt='icon'
         />
       </Link>
