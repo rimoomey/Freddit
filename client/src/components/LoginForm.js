@@ -20,7 +20,6 @@ export default function LoginForm () {
 
   function handleNewUser (e) {
     e.preventDefault()
-    debugger
     fetch(`/users`, {
       method: 'POST',
       headers: {
