@@ -20,11 +20,16 @@ export default function Post() {
       })
   }, []);
 
+  const handleNewComment = c => {
+    const comments = post.sorted_comments;
+    setPost({...post, sorted_comments: [...comments, c]});
+  }
+
   return (
     <main>
       {post.id ? <PostBody post={post} /> : 'Loading...'}
       <hr />
-      <CommentSection comments={post.sorted_comments || []}/>
+      <CommentSection comments={post.sorted_comments || []} postId={post.id || -1} onComment={handleNewComment} />
     </main>
   );
 }
