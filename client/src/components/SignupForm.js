@@ -15,18 +15,21 @@ const LoginContainer = styled.form`
 export default function LoginForm () {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [passwordConfirmation, setPasswordConfirmation] = useState('')
   const dispatch = useDispatch();
 
   function handleNewUser (e) {
     e.preventDefault()
-    fetch('/login', {
+    fetch('/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         username,
-        password
+        password,
+        password_confirmation: passwordConfirmation,
+        email: 'test@gmail.com'
       })
     })
       .then(r => {
@@ -42,18 +45,30 @@ export default function LoginForm () {
 
   return (
     <LoginContainer onSubmit={e => handleNewUser(e)}>
-      <h3>Login</h3>
+      <h1>Signup for Freddit</h1>
+      <label htmlFor='username'>Username</label>
       <FormInput
-        placeholder='username'
+        placeholder='fredditor_#1'
         type='text'
+        id='username'
         value={username}
         onChange={e => setUsername(e.target.value)}
       />
+      <label htmlFor='password'>Password</label>
       <FormInput
-        placeholder='password'
+        placeholder='Sup3rS3cretP@ss'
         type='password'
+        id='password'
         value={password}
         onChange={e => setPassword(e.target.value)}
+      />
+      <label htmlFor='password_confirmation'>Confirm Password</label>
+      <FormInput
+        placeholder='Sup3rS3cretP@ss'
+        type='password'
+        id='password_confirmation'
+        value={passwordConfirmation}
+        onChange={e => setPasswordConfirmation(e.target.value)}
       />
       <FormInput type='submit' value='Login' />
     </LoginContainer>

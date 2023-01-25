@@ -1,4 +1,4 @@
-import LoginForm from './LoginForm.js';
+import SignupForm from './SignupForm.js';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 
@@ -29,7 +29,7 @@ export default function LoginModal () {
   return (
     <LoginModalContainer>
       <Button onClick={onClose} style={{position: 'absolute', top: 10, right: 10}}>X</Button>
-      <LoginForm />
+      <SignupForm />
     </LoginModalContainer>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { FormInput } from '../styled-components/FormInput';
 import { PostButton } from '../styled-components/Button';
@@ -30,10 +31,11 @@ const DEFAULT_FORM_DATA = {
 export default function PostForm() {
   const [formData, setFormData] = useState(DEFAULT_FORM_DATA);
 
+  const user = useSelector(state => state.user);
   const params = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(params);
     setFormData(f => ({...f, topic: params['topic_name'] || ''}));
   }, [params]);
 
@@ -47,8 +49,25 @@ export default function PostForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(formData);
-    setFormData(DEFAULT_FORM_DATA);
+    fetch(`/users/${user.id}/posts`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+      .then(r => {
+        if (r.ok) {
+          r.json().then(data => {
+            console.log(data);
+            navigate(`/fr/${data.topic.name}/${id}`);
+          });
+        } else {
+          r.json().then(data => {
+            console.log(data);
+          });
+        }
+      });
   }
 
   return (
