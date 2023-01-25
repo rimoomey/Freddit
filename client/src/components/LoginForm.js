@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { login } from '../features/user/userSlice'
 import { FormInput } from '../styled-components/FormInput'
 
-const NewUserContainer = styled.form`
+const LoginUserContainer = styled.form`
   display: flex;
   flex-direction: column;
   gap: 0.25em;
@@ -17,7 +17,7 @@ export default function LoginForm () {
   const [password, setPassword] = useState('')
   const dispatch = useDispatch()
 
-  function handleNewUser (e) {
+  function handleLoginUser (e) {
     e.preventDefault()
     fetch(`/login`, {
       method: 'POST',
@@ -34,15 +34,13 @@ export default function LoginForm () {
           dispatch(login(data))
         })
       } else {
-        r.json().then(data => {
-          console.error(data.errors)
-        })
+        r.json().then(data => console.log(data.errors))
       }
     })
   }
 
   return (
-    <NewUserContainer onSubmit={e => handleNewUser(e)}>
+    <LoginUserContainer onSubmit={e => handleLoginUser(e)}>
       <h3>Login</h3>
       <FormInput
         placeholder='username'
@@ -57,6 +55,6 @@ export default function LoginForm () {
         onChange={e => setPassword(e.target.value)}
       />
       <FormInput type='submit' value='Login' />
-    </NewUserContainer>
+    </LoginUserContainer>
   )
 }
