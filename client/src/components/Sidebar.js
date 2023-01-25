@@ -18,7 +18,7 @@ const Aside = styled.aside`
 export default function Sidebar({user}) {
   return (
     <Aside>
-      {user && <LoginForm />}
+      {user.id && <LoginForm />}
       <Link to="/new-post">
         <Button>Submit a new post</Button>
       </Link>
