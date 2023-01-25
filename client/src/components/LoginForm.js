@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react'
+import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
 
-import { login } from '../features/user/userSlice';
-import { FormInput } from '../styled-components/FormInput';
+import { login } from '../features/user/userSlice'
+import { FormInput } from '../styled-components/FormInput'
 
-const LoginContainer = styled.form`
+const NewUserContainer = styled.form`
   display: flex;
   flex-direction: column;
   gap: 0.25em;
@@ -15,19 +15,31 @@ const LoginContainer = styled.form`
 export default function LoginForm () {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   function handleNewUser (e) {
     e.preventDefault()
-    fetch('/login', {
+    fetch(`/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         username,
-        password
+        password,
+        email: `dummy${Math.random()}@gmail.com`
       })
+    }).then(r => {
+      if (r.ok) {
+        r.json().then(data => {
+          console.log(data)
+          dispatch(login(data))
+        })
+      } else {
+        r.json().then(data => {
+          console.error(data.errors)
+        })
+      }
     })
       .then(r => {
         if (r.ok) {
@@ -39,9 +51,8 @@ export default function LoginForm () {
         }
       });
   }
-
   return (
-    <LoginContainer onSubmit={e => handleNewUser(e)}>
+    <NewUserContainer onSubmit={e => handleNewUser(e)}>
       <h3>Login</h3>
       <FormInput
         placeholder='username'
@@ -56,6 +67,6 @@ export default function LoginForm () {
         onChange={e => setPassword(e.target.value)}
       />
       <FormInput type='submit' value='Login' />
-    </LoginContainer>
-  );
+    </NewUserContainer>
+  )
 }
