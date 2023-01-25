@@ -1,6 +1,10 @@
-import LoginForm from './LoginForm.js'
-import styled from 'styled-components'
-import { Button } from '../styled-components/Button'
+import LoginForm from './LoginForm.js';
+import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+
+import { Button } from '../styled-components/Button';
+import { hideLoginModal } from '../features/loginModal/loginModalSlice';
+
 const LoginModalContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
@@ -13,13 +17,19 @@ const LoginModalContainer = styled.div`
   width: 250px;
   top: 70px;
   left: calc(50% - 125px);
-`
+`;
 
-export default function LoginModal ({ onClose }) {
+export default function LoginModal () {
+  const dispatch = useDispatch();
+
+  const onClose = () => {
+    dispatch(hideLoginModal());
+  }
+
   return (
     <LoginModalContainer>
       <Button onClick={onClose} style={{position: 'absolute', top: 10, right: 10}}>X</Button>
       <LoginForm />
     </LoginModalContainer>
-  )
+  );
 }
