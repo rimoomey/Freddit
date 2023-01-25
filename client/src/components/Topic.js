@@ -26,7 +26,7 @@ export default function Topic() {
           r.json().then(console.log);
         }
       })
-  }, []);
+  }, [topicName]);
 
   return (
     <main>

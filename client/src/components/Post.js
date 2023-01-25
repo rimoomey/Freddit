@@ -5,7 +5,7 @@ import PostBody from './PostBody';
 import CommentSection from './CommentSection';
 
 export default function Post() {
-  const { topic_name: topicName, post_id: postId } = useParams();
+  const { post_id: postId } = useParams();
 
   const [post, setPost] = useState({});
 
@@ -18,7 +18,7 @@ export default function Post() {
           r.json().then(console.log);
         }
       })
-  }, []);
+  }, [postId]);
 
   const handleNewComment = c => {
     const comments = post.sorted_comments;

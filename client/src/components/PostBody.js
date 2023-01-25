@@ -11,7 +11,7 @@ const Img = styled.img`
 `;
 
 export default function PostBody({ post }) {
-  const { id, title, content, user, topic, num_likes: votes, created_at: postDate, thumbnail_url: img } = post;
+  const { title, content, user, topic, num_likes: votes, created_at: postDate, thumbnail_url: img } = post;
 
   return (
     <Section as="article">

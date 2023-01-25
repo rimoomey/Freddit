@@ -9,7 +9,7 @@ const CommentDiv = styled(HDiv)`
 `;
 
 export default function Comment({ comment }) {
-  const { id, content, created_at: postDate, num_likes: votes, user } = comment;
+  const { content, created_at: postDate, num_likes: votes, user } = comment;
 
   return (
     <CommentDiv>
