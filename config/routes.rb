@@ -4,6 +4,9 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :create, :destroy, :update]
   end
   resources :posts, only: [:index, :show]
+  resources :posts do
+    resources :comments
+  end
   resources :topics, only: [:index, :show]
   resources :comments, only: [:index]
 
