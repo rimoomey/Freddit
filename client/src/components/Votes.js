@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 
@@ -31,6 +31,7 @@ const VoteButton = styled.button`
 
 export default function Votes({ votes, userHasVoted, parent }) {
   const user = useSelector(state => state.user);
+  const [voteData, setVoteData] = useState({voteCount: votes, userHasVoted: userHasVoted});
 
   const handleVote = () => {
     fetch(`/users/${user.id}/likes?${parent.type}_id=${parent.id}`, {
@@ -38,7 +39,13 @@ export default function Votes({ votes, userHasVoted, parent }) {
     })
       .then(r => {
         if (r.ok) {
-          r.json().then(console.log);
+          r.json().then(likeData => {
+            setVoteData({
+              voteCount: likeData['post_or_comment']['num_likes'],
+              userHasVoted: likeData['post_or_comment']['voted?']
+            });
+            console.log(likeData);
+          });
         } else {
           r.json().then(console.log);
         }
@@ -47,8 +54,8 @@ export default function Votes({ votes, userHasVoted, parent }) {
 
   return (
     <VotesContainer>
-      <VoteButton onClick={handleVote} className={`${userHasVoted ? 'voted' : ''}`}>⇧</VoteButton>
-      <div>{votes}</div>
+      <VoteButton onClick={handleVote} className={`${voteData.userHasVoted ? 'voted' : ''}`}>⇧</VoteButton>
+      <div>{voteData.voteCount}</div>
       <VoteButton disabled>⇩</VoteButton>
     </VotesContainer>
   );
