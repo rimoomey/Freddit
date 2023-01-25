@@ -5,12 +5,13 @@ class PostSerializer < ActiveModel::Serializer
 
   def voted?
     user = User.find_by(id: instance_options[:session_user_id])
-    return false if user.nil?
-    return true if object.user_id == user.id
+    return 0 if user.nil?
 
     user.likes.each do |like|
-      return true if like.likeable_id == object.id
+      return like.vote if like.likeable_id == object.id
     end
-    false
+    return 1 if object.user_id == user.id
+
+    0
   end
 end

@@ -8,6 +8,6 @@ class Comment < ApplicationRecord
   belongs_to :post
 
   def self.order_by_popularity(comment_collection)
-    comment_collection.sort_by(&:num_likes).reverse!
+    comment_collection.order(num_likes: :desc)
   end
 end
