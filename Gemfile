@@ -34,7 +34,11 @@ gem 'puma', '~> 5.0'
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+<<<<<<< HEAD
+gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
+=======
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+>>>>>>> d9c8780a449606c92d77af018c683f68b7c3772c
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
@@ -47,10 +51,19 @@ gem 'bootsnap', require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+<<<<<<< HEAD
+  gem "debug", platforms: %i[mri mingw x64_mingw]
+=======
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+>>>>>>> d9c8780a449606c92d77af018c683f68b7c3772c
 end
 
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
+<<<<<<< HEAD
+
+gem "standard", group: [:development, :test]
+=======
+>>>>>>> d9c8780a449606c92d77af018c683f68b7c3772c

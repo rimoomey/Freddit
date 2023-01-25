@@ -3,7 +3,6 @@ class User < ApplicationRecord
   validates :username, uniqueness: true
   validates :email, presence: true
   validates :email, uniqueness: true
-  # validates :password, presence: true
 
   has_secure_password
 
@@ -14,8 +13,12 @@ class User < ApplicationRecord
   belongs_to :likeable, polymorphic: true, optional: true
 
   has_many :likes
-  has_many :comments, through: :likes, source: :likeable, source_type: 'Comment'
-  has_many :posts, through: :likes, source: :likeable, source_type: 'Post'
+  # has_many :comments, through: :likes, source: :likeable, source_type: 'Comment'
+  # has_many :posts, class_name: 'Posts', through: :likes, source: :likeable, source_type: 'Post'
+
+  def post_titles
+    Post.titles(posts)
+  end
 
   private
 

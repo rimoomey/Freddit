@@ -6,4 +6,8 @@ class Comment < ApplicationRecord
   has_many :users, through: :likes
   belongs_to :user
   belongs_to :post
+
+  def self.order_by_popularity(comment_collection)
+    comment_collection.sort_by(&:num_likes).reverse!
+  end
 end
