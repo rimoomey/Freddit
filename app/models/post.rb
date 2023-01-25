@@ -15,6 +15,10 @@ class Post < ApplicationRecord
     posts.map(&:title)
   end
 
+  def self.top25(post_collection)
+    post_collection.sort_by(&:num_likes).reverse!.slice(0, 26)
+  end
+
   def voted?(current_user_id)
     current_user_id == id
   end
