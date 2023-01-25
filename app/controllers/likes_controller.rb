@@ -12,6 +12,9 @@ class LikesController < ApplicationController
     likeable = Comment.find(params[:comment_id]) if params[:comment_id]
     likeable = Post.find(params[:post_id]) if params[:post_id]
 
+    likeable.num_likes += 1
+    likeable.save
+
     like = Like.create(user: user, likeable: likeable)
     return render json: like, session_user_id: session[:user_id], status: :created if like.valid?
 
