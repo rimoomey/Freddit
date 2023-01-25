@@ -5,28 +5,20 @@ class ExpandedPostsSerializer < ActiveModel::Serializer
 
   def sorted_comments
     sorted = Comment.order_by_popularity(object.comments)
-    sorted.map! do |comment|
-      {
-        id: comment.id,
-        content: comment.content,
-        num_likes: comment.num_likes,
-        created_at: comment.created_at,
-        user: user_info(comment.user),
-        post_id: comment.post_id
-      }
-    end
-    sorted
+    options = { serializer: CommentSerializer, session_user_id: instance_options[:session_user_id] }
+    sorted.map { |record| ActiveModelSerializers::SerializableResource.new(record, options) }
   end
 
   def voted?
     user = User.find_by(id: instance_options[:session_user_id])
-    return false if user.nil?
-    return true if object.user_id == user.id
+    return 0 if user.nil?
 
     user.likes.each do |like|
-      return true if like.likeable_id == object.id
+      return like.vote if like.likeable_id == object.id
     end
-    false
+    return 1 if object.user_id == user.id
+
+    0
   end
 
   private

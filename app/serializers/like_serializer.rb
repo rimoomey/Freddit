@@ -8,7 +8,7 @@ class LikeSerializer < ActiveModel::Serializer
       return ActiveModelSerializers::SerializableResource.new(comment, options)
     end
     post = Post.find(object.likeable_id)
-    options = { serializer: PostSerializer, session_user_id: instance_options[:session_user_id]}
+    options = { serializer: PostSerializer, session_user_id: instance_options[:session_user_id] }
     ActiveModelSerializers::SerializableResource.new(post, options)
   end
 end

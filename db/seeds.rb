@@ -29,7 +29,7 @@ post3.user = user2
 post3.topic = topics[0]
 post3.save
 
-like = Like.new
+like = Like.new(vote: -1)
 like.likeable = post1
 like.user = user1
 like.save
