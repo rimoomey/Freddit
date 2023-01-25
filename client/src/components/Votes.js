@@ -20,12 +20,12 @@ const VoteButton = styled.button`
   }
 `;
 
-export default function Votes() {
+export default function Votes({ votes }) {
 
   return (
     <VotesContainer>
       <VoteButton>⇧</VoteButton>
-      <div>VOTES</div>
+      <div>{votes}</div>
       <VoteButton>⇩</VoteButton>
     </VotesContainer>
   );
