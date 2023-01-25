@@ -1,24 +1,12 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 
-import { Button } from '../styled-components/Button';
-import { TextArea } from '../styled-components/TextArea';
-
-const PostButton = styled(Button)`
-  margin: 0.5em;
-`;
-
-const MIN_ROWS = 3;
-const MAX_ROWS = 10;
-const LINE_HEIGHT = 24;
+import AutosizeTextarea from './AutosizeTextarea';
+import { PostButton } from '../styled-components/Button';
 
 export default function CreateComment() {
   const [text, setText] = useState('');
 
   const handleChange = e => {
-    e.target.rows = MIN_ROWS;
-    const numRows = Math.max((e.target.scrollHeight / LINE_HEIGHT), MIN_ROWS);
-    e.target.rows = numRows < MAX_ROWS ? numRows : MAX_ROWS;
     setText(e.target.value);
   }
 
@@ -30,9 +18,9 @@ export default function CreateComment() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <TextArea
-        cols="100"
-        rows={MIN_ROWS}
+      <AutosizeTextarea
+        minRows={3}
+        maxRows={10}
         value={text}
         onChange={handleChange}
       />

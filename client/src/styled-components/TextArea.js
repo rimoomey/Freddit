@@ -5,7 +5,7 @@ const TextArea = styled.textarea`
   display: block;
   resize: none;
   overflow: visible;
-  line-height: 24px;
+  line-height: 20px;
   height: auto;
 `;
 
