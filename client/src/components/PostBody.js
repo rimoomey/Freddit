@@ -19,19 +19,22 @@ export default function PostBody ({ post }) {
     topic,
     num_likes: votes,
     created_at: postDate,
-    thumbnail_url: img
+    thumbnail_url: img,
+    'voted?': userHasVoted
   } = post
 
   return (
     <Section as='article'>
       <HDiv>
-        <Votes votes={votes} />
+        <Votes votes={votes} userHasVoted={userHasVoted} parent={{type: 'post', id}}/>
         <div>
           <h3>{title}</h3>
           <h4>
             Submitted to <Link to={`/fr/${topic.name}`}>{topic.name}</Link> by{' '}
-            <UserNameLink to={`/users/${user.id}`}>{user.username}</UserNameLink> on{' '}
-            {postDate.substring(0, 10)}
+            <UserNameLink to={`/users/${user.id}`}>
+              {user.username}
+            </UserNameLink>{' '}
+            on {postDate.substring(0, 10)}
           </h4>
           <Img src={img} alt={title} />
           <p>{content}</p>

@@ -17,8 +17,13 @@ export default function PostList({ posts }) {
   );
 
   return (
-    <PostOrderedList>
-      {postElements}
-    </PostOrderedList>
+    <>
+      {postElements.length > 0
+        ? (<PostOrderedList>
+            {postElements}
+          </PostOrderedList>)
+        : <h1>Could not fetch any posts.</h1>
+      }
+    </>
   );
 }
