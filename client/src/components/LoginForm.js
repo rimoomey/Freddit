@@ -1,6 +1,9 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import { FormInput } from '../styled-components/FormInput'
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+
+import { login } from '../features/user/userSlice';
+import { FormInput } from '../styled-components/FormInput';
 
 const LoginContainer = styled.form`
   display: flex;
@@ -9,10 +12,11 @@ const LoginContainer = styled.form`
   margin: 0.75em;
 `
 
-export default function LoginForm ({ setUser }) {
+export default function LoginForm () {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
+  const dispatch = useDispatch();
 
   function handleNewUser (e) {
     e.preventDefault()
@@ -28,8 +32,12 @@ export default function LoginForm ({ setUser }) {
       })
     })
       .then(r => r.json())
-      .then(data => console.log(data))
+      .then(data => {
+        console.log(data);
+        dispatch(login(data));
+      });
   }
+
   return (
     <LoginContainer onSubmit={e => handleNewUser(e)}>
       <h1>Signup for Freddit</h1>
@@ -59,5 +67,5 @@ export default function LoginForm ({ setUser }) {
       />
       <FormInput type='submit' value='Login' />
     </LoginContainer>
-  )
+  );
 }
