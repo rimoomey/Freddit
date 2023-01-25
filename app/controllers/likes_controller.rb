@@ -27,14 +27,6 @@ class LikesController < ApplicationController
     render json: { errors: errors.full_messages }, status: :unprocessable_entity
   end
 
-  # def comment_params
-  #   params.permit([:content, :user_id, :post_id])
-  # end
-
-  # def post_params
-  #   params.permit([:title, :content])
-  # end
-
   def not_found
     render json: { error: 'No such user found' }, status: :not_found
   end
