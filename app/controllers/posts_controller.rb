@@ -1,7 +1,10 @@
 class PostsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   def index
-    posts = Post.all
+    topic = Topic.find_by(name: params[:topic_name])
+    return render json: Post.all, session_user_id: session[:user_id], status: :ok if topic.nil?
+
+    posts = topic.posts
     render json: posts, session_user_id: session[:user_id], status: :ok
   end
 
@@ -19,6 +22,7 @@ class PostsController < ApplicationController
       topic = Topic.find_or_create_by(name: params[:topic_name])
       post.topic = topic
       post.user = user
+      post.save
       return render json: post, status: :created
     end
     unauthorized
@@ -54,7 +58,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.permit([:title, :thumbnail_url, :content, :user_id, :id])
+    params.permit(%i[title thumbnail_url content topic_id user_id id])
   end
 
   def not_found

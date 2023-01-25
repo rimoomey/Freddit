@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.permit([:username, :email, :password, :password_confirmation])
+    params.permit(%i[username email password password_confirmation])
   end
 
   def not_found
