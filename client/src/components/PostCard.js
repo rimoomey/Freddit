@@ -34,12 +34,13 @@ const PostDetails = styled.p`
 `;
 
 export default function PostCard({ position, post }) {
-  const { id, title, thumbnail_url: img, created_at: postDate, user, topic, num_likes: votes } = post;
+  const { id, title, thumbnail_url: img, created_at: postDate, user, topic, num_likes: votes, 'voted?': userHasVoted } = post;
+  console.log(post);
 
   return (
     <PostContainer>
       <Ranking>{position}</Ranking>
-      <Votes votes={votes} />
+      <Votes votes={votes} userHasVoted={userHasVoted} parent={{type: 'post', id}}/>
       <MyLink to={`/fr/${topic?.name || 'topic'}/${id}`}>
         <PostThumbnail src={img} alt="thumbnail" />
         <section>
