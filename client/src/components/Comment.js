@@ -9,13 +9,13 @@ const CommentDiv = styled(HDiv)`
 `;
 
 export default function Comment({ comment }) {
-  const { id, content, created_at: postDate } = comment;
+  const { id, content, created_at: postDate, num_likes: votes, user } = comment;
 
   return (
     <CommentDiv>
-      <Votes votes={0}/>
+      <Votes votes={votes}/>
       <div>
-        <h5>USERNAME - {postDate.substring(0, 10)}</h5>
+        <h5>{user.username} - {postDate.substring(0, 10)}</h5>
         <p>{content}</p>
       </div>
     </CommentDiv>

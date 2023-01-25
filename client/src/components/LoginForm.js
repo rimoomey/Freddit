@@ -19,15 +19,14 @@ export default function LoginForm () {
 
   function handleNewUser (e) {
     e.preventDefault()
-    fetch(`/users`, {
+    fetch(`/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         username,
-        password,
-        email: `dummy${Math.random()}@gmail.com`
+        password
       })
     }).then(r => {
       if (r.ok) {
@@ -51,6 +50,7 @@ export default function LoginForm () {
         }
       });
   }
+
   return (
     <NewUserContainer onSubmit={e => handleNewUser(e)}>
       <h3>Login</h3>

@@ -11,7 +11,7 @@ const CommentList = styled.ul`
   list-style: none;
 `;
 
-export default function CommentSection({ comments }) {
+export default function CommentSection({ postId, comments, onComment }) {
   const user = useSelector(state => state.user);
 
   const commentElements = comments.map((c, idx) =>
@@ -21,7 +21,7 @@ export default function CommentSection({ comments }) {
   return (
     <Section>
       <h4>Want to add to the discussion?</h4>
-      {user.username ? <CreateComment /> : <SignupButton />}
+      {user.username ? <CreateComment postId={postId} onComment={onComment} /> : <SignupButton />}
       <h4>Comments</h4>
       <CommentList>
         {commentElements}

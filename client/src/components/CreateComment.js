@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import AutosizeTextarea from './AutosizeTextarea';
 import { PostButton } from '../styled-components/Button';
 
-export default function CreateComment() {
+export default function CreateComment({ postId, onComment }) {
   const [text, setText] = useState('');
 
   const handleChange = e => {
@@ -12,7 +12,22 @@ export default function CreateComment() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(text);
+    fetch(`/posts/${postId}/comments`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        content: text
+      })
+    })
+      .then(r => {
+        if (r.ok) {
+          r.json().then(onComment);
+        } else {
+          r.json().then(console.log);
+        }
+      })
     setText('');
   }
 
