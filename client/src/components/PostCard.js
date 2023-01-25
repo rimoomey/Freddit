@@ -40,7 +40,7 @@ export default function PostCard({ position, post }) {
     <PostContainer>
       <Ranking>{position}</Ranking>
       <Votes votes={votes} />
-      <MyLink to={`fr/${topic?.name || 'topic'}/${id}`}>
+      <MyLink to={`/fr/${topic?.name || 'topic'}/${id}`}>
         <PostThumbnail src={img} alt="thumbnail" />
         <section>
           <PostTitle>{title}</PostTitle>

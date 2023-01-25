@@ -31,7 +31,6 @@ export default function LoginForm () {
     }).then(r => {
       if (r.ok) {
         r.json().then(data => {
-          console.log(data)
           dispatch(login(data))
         })
       } else {
@@ -40,15 +39,6 @@ export default function LoginForm () {
         })
       }
     })
-      .then(r => {
-        if (r.ok) {
-          r.json().then(data => {
-            dispatch(login(data));
-          })
-        } else {
-          r.json().then(data => console.log(data.errors));
-        }
-      });
   }
 
   return (

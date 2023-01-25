@@ -36,7 +36,7 @@ export default function PostForm() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setFormData(f => ({...f, topic: params['topic'] || ''}));
+    setFormData(f => ({...f, topic: params['topic_name'] || ''}));
   }, [params]);
 
   const handleChange = e => {
