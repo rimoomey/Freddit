@@ -49,7 +49,6 @@ export default function PostForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(formData);
     fetch(`/users/${user.id}/posts`, {
       method: 'POST',
       headers: {
