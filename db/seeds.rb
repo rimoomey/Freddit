@@ -30,6 +30,7 @@ post3.topic = topics[0]
 post3.save
 
 like = Like.new(vote: -1)
-like.likeable = post1
+like.likeable = post2
 like.user = user1
+like.update_likes
 like.save
