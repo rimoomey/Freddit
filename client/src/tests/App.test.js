@@ -4,7 +4,6 @@ import { store } from '../store'
 import { RouterProvider } from 'react-router-dom'
 
 import router from '../router'
-
 test('renders freddit icon', () => {
   render(
     <Provider store={store}>

@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  before_action :get_user
   def index
+    posts = @user.nil? ? Post.all : @user.posts
     topic = Topic.find_by(name: params[:topic_name])
-    return render json: Post.all, session_user_id: session[:user_id], status: :ok if topic.nil?
+    return render json: posts, session_user_id: session[:user_id], status: :ok if topic.nil?
 
     posts = topic.posts
     render json: posts, session_user_id: session[:user_id], status: :ok
@@ -48,6 +50,10 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def get_user
+    @user = User.find_by(id: params[:user_id])
+  end
 
   def errors(post)
     render json: { errors: post.errors.full_messages }, status: :unprocessable_entity
