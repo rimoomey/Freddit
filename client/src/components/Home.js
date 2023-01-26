@@ -12,7 +12,7 @@ export default function Home() {
     fetch('/posts')
       .then(r => {
         if (r.ok) {
-          r.json().then( data => { console.log(data); setPosts(data) } );
+          r.json().then( data => { setPosts(data) } );
         } else {
           r.json().then(console.log);
         }
