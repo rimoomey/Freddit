@@ -17,6 +17,7 @@ class Like < ApplicationRecord
       likeable.num_likes -= vote
       likeable.num_likes += new_vote
       likeable.save
+      user.save
       self.vote = new_vote
       save
     end

@@ -10,7 +10,6 @@ class PostSerializer < ActiveModel::Serializer
     user.likes.each do |like|
       return like.vote if like.likeable_id == object.id
     end
-    return 1 if object.user_id == user.id
 
     0
   end
