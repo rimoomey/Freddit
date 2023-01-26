@@ -39,7 +39,7 @@ export default function Header () {
         />
       </Link>
 
-      {user.id || (
+      {user.id ? '' : (
         <SignupDiv>
           {/* Signup OR Signout */}
           <p>Want to join all the REAL front pagers at Freddit? Sign up today!</p>
