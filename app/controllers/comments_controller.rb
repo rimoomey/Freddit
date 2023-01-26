@@ -1,11 +1,11 @@
 class CommentsController < ApplicationController
+  before_action :too_many_arguments, only: [:index]
   before_action :get_user
   before_action :get_post
   def index
     comments = @user.comments unless @user.nil?
     comments = @post.comments unless @post.nil?
     comments = Comment.all if @user.nil? && @post.nil?
-    return too_many_arguments if !@user.nil? && !@post.nil?
 
     comments = Comment.order_by_popularity(comments)
     render json: comments, status: :ok
@@ -42,7 +42,7 @@ class CommentsController < ApplicationController
   end
 
   def too_many_arguments
-    render json: { errors: 'Too many arguments' }, status: :unprocessable_entity
+    return render json: { errors: 'Too many arguments' }, status: :unprocessable_entity if params[:user_id] && params[:post_id]
   end
 
   def comment_params
