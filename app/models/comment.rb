@@ -15,6 +15,6 @@ class Comment < ApplicationRecord
   private
   
   def default_values
-    num_likes ||= 0
+    self.num_likes ||= 0
   end
 end
