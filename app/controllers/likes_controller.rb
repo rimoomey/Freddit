@@ -15,7 +15,6 @@ class LikesController < ApplicationController
     like = Like.create(like_params)
     if like.valid?
       like.update_likes
-      like.save
       return render json: like, session_user_id: session[:user_id], status: :created
     end
 
