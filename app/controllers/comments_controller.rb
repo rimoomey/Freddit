@@ -17,8 +17,7 @@ class CommentsController < ApplicationController
     comment = Comment.create(comment_params)
     comment.post = @post
     comment.user = @user
-    comment.num_likes = 0
-    comment.save!
+    comment.save
     render json: comment, status: :created
   end
 
