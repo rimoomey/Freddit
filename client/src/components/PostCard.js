@@ -35,7 +35,6 @@ const PostDetails = styled.p`
 
 export default function PostCard({ position, post }) {
   const { id, title, thumbnail_url: img, created_at: postDate, user, topic, num_likes: votes, 'voted?': userHasVoted } = post;
-  console.log(post);
 
   return (
     <PostContainer>
