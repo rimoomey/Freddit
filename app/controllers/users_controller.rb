@@ -32,6 +32,6 @@ class UsersController < ApplicationController
   end
 
   def not_found
-    render json: { error: 'User ID invalid' }, status: :not_found
+    render json: { errors: ['User ID invalid'] }, status: :not_found
   end
 end
