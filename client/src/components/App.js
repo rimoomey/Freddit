@@ -6,7 +6,7 @@ import { login } from '../features/user/userSlice';
 import '../App.css';
 import Header from './Header';
 import Sidebar from './Sidebar';
-import LoginModal from './LoginModal';
+import SignupModal from './SignupModal';
 
 export default function App () {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ export default function App () {
 
   return (
     <>
-      <LoginModal />
+      <SignupModal />
       <Header />
       <Sidebar />
       <Outlet />
