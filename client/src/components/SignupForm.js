@@ -53,7 +53,7 @@ export default function LoginForm () {
         })
       } else {
         r.json().then(data => {
-          setErrors(data.error)
+          setErrors(data.errors)
         })
       }
     })
