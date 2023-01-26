@@ -21,16 +21,12 @@ const VoteButton = styled.button`
     cursor: pointer;
   }
 
-  &.downvote {
+  &.down.downvote {
     color: red;
   }
 
-  &.upvote {
+  &.up.upvote {
     color: #0D0;
-  }
-
-  &:disabled {
-    color: #ddd;
   }
 `;
 
@@ -63,7 +59,6 @@ export default function Votes({ votes, userHasVoted, parent }) {
       .then(r => {
         if (r.ok) {
           r.json().then(likeData => {
-            console.log(likeData);
             setVoteData({
               voteCount: likeData['post_or_comment']['num_likes'],
               userHasVoted: likeData['post_or_comment']['voted?']
@@ -83,12 +78,12 @@ export default function Votes({ votes, userHasVoted, parent }) {
     <VotesContainer>
       <VoteButton
         onClick={() => handleVote(1)}
-        className={VOTE_CLASS[voteData.userHasVoted]}
+        className={`up ${VOTE_CLASS[voteData.userHasVoted]}`}
       >⇧</VoteButton>
       <div>{voteData.voteCount}</div>
       <VoteButton
         onClick={() => handleVote(-1)}
-        className={VOTE_CLASS[voteData.userHasVoted]}
+        className={`down ${VOTE_CLASS[voteData.userHasVoted]}`}
       >⇩</VoteButton>
     </VotesContainer>
   );
