@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { MyLink } from '../styled-components/MyLink';
 import Votes from './Votes';
+import logo from '../assets/fr-logo.png';
 
 const PostContainer = styled.div`
   display: flex;
@@ -41,7 +42,14 @@ export default function PostCard({ position, post }) {
   return (
     <PostContainer>
       <MyLink to={`/fr/${topic?.name || 'topic'}/${id}`}>
-        <PostThumbnail src={img} alt="thumbnail" />
+        <PostThumbnail
+          src={img}
+          alt="thumbnail"
+          onError={e => {
+            e.target.onerror = null;
+            e.target.src = logo;
+          }}
+        />
         <section>
           <PostTitle>{title}</PostTitle>
           <PostDetails>

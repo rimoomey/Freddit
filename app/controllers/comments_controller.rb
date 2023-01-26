@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  wrap_parameters false
   before_action :too_many_arguments, only: [:index]
   before_action :get_user
   before_action :get_post
@@ -12,12 +13,12 @@ class CommentsController < ApplicationController
   end
 
   def create
+    return unauthorized unless session[:user_id] == @user.id
+
     comment = Comment.create(comment_params)
-    post = Post.find(params[:post_id])
-    comment.post = post
+    comment.post = @post
     comment.user = @user
-    comment.num_likes = 0
-    comment.save!
+    comment.save
     render json: comment, status: :created
   end
 
@@ -47,5 +48,9 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.permit(:content)
+  end
+
+  def unauthorized
+    render json: { errors: ['You must be logged in to comment.'] }, status: :unauthorized
   end
 end

@@ -1,17 +1,27 @@
-import React from 'react'
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import logo from '../assets/fr-logo.png'
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import logo from '../assets/fr-logo.png';
 
-import SignupButton from './SignupButton'
+import SignupButton from './SignupButton';
+
+const TitleContainer = styled(Link)`
+  display: flex;
+  align-items: end;
+`;
 
 const Icon = styled.img`
   display: block;
   width: 100%;
   max-width: 5rem;
   margin: 0.5em 1em;
-`
+`;
+
+// const Title = styled.h1`
+//   color: black;
+//   text-decoration: none;
+// `;
 
 const Head = styled.header`
   display: flex;
@@ -23,18 +33,23 @@ const Head = styled.header`
 
 const SignupDiv = styled.div`
   padding: 0 1em;
-`
+`;
 
 export default function Header () {
   const user = useSelector(state => state.user) // user stores user state data
 
   return (
     <Head>
-      <Link to='/'>
-        <Icon src={logo} alt='icon' />
-      </Link>
+      <TitleContainer to='/'>
+        <Icon
+          src={logo}
+          alt='icon'
+        />
+        {/* <Title>Freddit</Title> */}
+      </TitleContainer>
 
-      {user.id || (
+
+      {user.id ? '' : (
         <SignupDiv>
           {/* Signup OR Signout */}
           <p>

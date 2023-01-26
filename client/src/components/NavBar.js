@@ -20,7 +20,6 @@ export default function NavBar() {
         }
       })
   }, []);
-  
   return (
     <Nav>
       {topics.map((n, i) =>
