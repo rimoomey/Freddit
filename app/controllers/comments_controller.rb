@@ -15,8 +15,7 @@ class CommentsController < ApplicationController
     comment = Comment.create(comment_params)
     post = Post.find(params[:post_id])
     comment.post = post
-    user = User.find(session[:user_id])
-    comment.user = user
+    comment.user = @user
     comment.num_likes = 0
     comment.save!
     render json: comment, status: :created
