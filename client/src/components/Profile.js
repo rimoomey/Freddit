@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { Link } from 'react-router-dom'
 import PostList from './PostList'
 
 export default function Profile () {
@@ -14,12 +13,12 @@ export default function Profile () {
     fetch(`/users/${id}/posts`).then(res => {
       if (res.ok) {
         res.json().then(data => {
-          // setUserName(data[0].user.username)
-          // data[0].user.username === user.username
-          //   ? setUserEmail(data[0].user.email)
-          //   : setUserEmail('')
+          setUserName(data[0].user.username)
+          data[0].user.username === user.username
+            ? setUserEmail(data[0].user.email)
+            : setUserEmail('')
           console.log(data)
-          setPosts(data.posts)
+          setPosts(data)
         })
       } else {
         console.log(res.errors)
