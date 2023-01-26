@@ -47,7 +47,7 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.permit(:content, :user_id, :post_id)
+    params.permit(:content)
   end
 
   def unauthorized
