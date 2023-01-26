@@ -1,4 +1,5 @@
 class LikesController < ApplicationController
+  wrap_parameters false
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   def index
     user = User.find(params[:user_id])

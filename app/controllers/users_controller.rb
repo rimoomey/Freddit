@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  wrap_parameters false
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   def index
     render json: User.all, status: :ok

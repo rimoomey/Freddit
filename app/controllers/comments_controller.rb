@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  wrap_parameters false
   before_action :too_many_arguments, only: [:index]
   before_action :get_user
   before_action :get_post
@@ -46,7 +47,7 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.permit(:content)
+    params.permit(:content, :user_id, :post_id)
   end
 
   def unauthorized

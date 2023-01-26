@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  wrap_parameters false
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   before_action :get_user
   def index
