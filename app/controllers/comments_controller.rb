@@ -12,9 +12,10 @@ class CommentsController < ApplicationController
   end
 
   def create
+    return unauthorized unless session[:user_id] == @user.id
+
     comment = Comment.create(comment_params)
-    post = Post.find(params[:post_id])
-    comment.post = post
+    comment.post = @post
     comment.user = @user
     comment.num_likes = 0
     comment.save!
@@ -47,5 +48,9 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.permit(:content)
+  end
+
+  def unauthorized
+    render json: { errors: ['You must be logged in to comment.'] }, status: :unauthorized
   end
 end
