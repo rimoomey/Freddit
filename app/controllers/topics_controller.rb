@@ -13,6 +13,6 @@ class TopicsController < ApplicationController
   private
 
   def not_found
-    render json: {error: "Topic not found"}, status: :not_found
+    render json: {errors: ['Topic not found'] }, status: :not_found
   end
 end

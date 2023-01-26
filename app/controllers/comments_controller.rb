@@ -34,15 +34,15 @@ class CommentsController < ApplicationController
   end
 
   def post_not_found
-    render json: { errors: 'Post not found' }, status: :not_found
+    render json: { errors: ['Post not found'] }, status: :not_found
   end
 
   def user_not_found
-    render json: { errors: 'User not found' }, status: :not_found
+    render json: { errors: ['User not found'] }, status: :not_found
   end
 
   def too_many_arguments
-    return render json: { errors: 'Too many arguments' }, status: :unprocessable_entity if params[:user_id] && params[:post_id]
+    return render json: { errors: ['Too many arguments'] }, status: :unprocessable_entity if params[:user_id] && params[:post_id]
   end
 
   def comment_params
