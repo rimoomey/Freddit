@@ -50,6 +50,7 @@ class PostsController < ApplicationController
 
   def get_user
     @user = User.find_by(id: params[:user_id])
+    user_not_found if params[:user_id] && @user.nil?
   end
 
   def errors(post)
@@ -66,5 +67,9 @@ class PostsController < ApplicationController
 
   def not_found
     render json: { error: 'Post not found' }, status: :not_found
+  end
+
+  def user_not_found
+    render json: { error: 'User not found' }, status: :not_found
   end
 end
