@@ -7,9 +7,8 @@ class CommentSerializer < ActiveModel::Serializer
     return 0 if user.nil?
 
     user.likes.each do |like|
-      return like.vote if like.likeable_id == object.id
+      return like.vote if like.likeable_id == object.id && like.likeable_type == 'Comment'
     end
-    return 1 if object.user_id == user.id
 
     0
   end

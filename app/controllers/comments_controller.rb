@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  wrap_parameters false
   before_action :too_many_arguments, only: [:index]
   before_action :get_user
   before_action :get_post
@@ -17,8 +18,7 @@ class CommentsController < ApplicationController
     comment = Comment.create(comment_params)
     comment.post = @post
     comment.user = @user
-    comment.num_likes = 0
-    comment.save!
+    comment.save
     render json: comment, status: :created
   end
 

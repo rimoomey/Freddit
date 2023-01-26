@@ -26,6 +26,6 @@ class Post < ApplicationRecord
   private
 
   def default_values
-    self.num_likes ||= 1
+    self.num_likes ||= 0
   end
 end
