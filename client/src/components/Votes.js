@@ -84,13 +84,11 @@ export default function Votes({ votes, userHasVoted, parent }) {
       <VoteButton
         onClick={() => handleVote(1)}
         className={VOTE_CLASS[voteData.userHasVoted]}
-        disabled={voteData.userHasVoted === -1}
       >⇧</VoteButton>
       <div>{voteData.voteCount}</div>
       <VoteButton
         onClick={() => handleVote(-1)}
         className={VOTE_CLASS[voteData.userHasVoted]}
-        disabled={voteData.userHasVoted === 1}
       >⇩</VoteButton>
     </VotesContainer>
   );

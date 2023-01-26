@@ -6,12 +6,22 @@ import logo from '../assets/fr-logo.png';
 
 import SignupButton from './SignupButton';
 
+const TitleContainer = styled(Link)`
+  display: flex;
+  align-items: end;
+`;
+
 const Icon = styled.img`
   display: block;
   width: 100%;
   max-width: 5rem;
   margin: 0.5em 1em;
 `;
+
+// const Title = styled.h1`
+//   color: black;
+//   text-decoration: none;
+// `;
 
 const Head = styled.header`
   display: flex;
@@ -32,12 +42,13 @@ export default function Header () {
   
   return (
     <Head>
-      <Link to='/'>
+      <TitleContainer to='/'>
         <Icon
           src={logo}
           alt='icon'
         />
-      </Link>
+        {/* <Title>Freddit</Title> */}
+      </TitleContainer>
 
       {user.id ? '' : (
         <SignupDiv>
