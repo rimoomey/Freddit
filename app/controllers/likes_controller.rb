@@ -28,7 +28,7 @@ class LikesController < ApplicationController
   end
 
   def unauthorized
-    render json: { errors: 'You do not have permission to view this page' }, status: :unauthorized
+    render json: { errors: ['You do not have permission to view this page'] }, status: :unauthorized
   end
 
   def errors(errors)
@@ -36,6 +36,6 @@ class LikesController < ApplicationController
   end
 
   def not_found
-    render json: { errors: 'No such user found' }, status: :not_found
+    render json: { errors: ['No such user found'] }, status: :not_found
   end
 end

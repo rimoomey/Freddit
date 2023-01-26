@@ -58,7 +58,7 @@ class PostsController < ApplicationController
   end
 
   def unauthorized
-    render json: { errors: 'Not authorized' }, status: :unauthorized
+    render json: { errors: ['Not authorized'] }, status: :unauthorized
   end
 
   def post_params
@@ -66,10 +66,10 @@ class PostsController < ApplicationController
   end
 
   def not_found
-    render json: { errors: 'Post not found' }, status: :not_found
+    render json: { errors: ['Post not found'] }, status: :not_found
   end
 
   def user_not_found
-    render json: { errors: 'User not found' }, status: :not_found
+    render json: { errors: ['User not found'] }, status: :not_found
   end
 end

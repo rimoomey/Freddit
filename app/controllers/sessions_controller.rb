@@ -23,14 +23,14 @@ class SessionsController < ApplicationController
   private
 
   def unauthorized
-    render json: { errors: 'No user current logged in' }, status: :unauthorized
+    render json: { errors: ['No user currently logged in'] }, status: :unauthorized
   end
 
   def not_found
-    render json: { errors: 'User not found' }, status: :not_found
+    render json: { errors: ['User not found'] }, status: :not_found
   end
 
   def incorrect_username_or_password
-    render json: { errors: 'incorrect username or password' }, status: :unauthorized
+    render json: { errors: ['Incorrect username or password'] }, status: :unauthorized
   end
 end
