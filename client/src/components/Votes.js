@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { showLoginModal } from '../features/loginModal/loginModalSlice';
 
 const VotesContainer = styled.section`
   display: flex;
@@ -20,8 +21,12 @@ const VoteButton = styled.button`
     cursor: pointer;
   }
 
-  &.voted {
+  &.downvote {
     color: red;
+  }
+
+  &.upvote {
+    color: #0D0;
   }
 
   &:disabled {
@@ -29,22 +34,40 @@ const VoteButton = styled.button`
   }
 `;
 
+const VOTE_CLASS = {
+  '-1': 'downvote',
+  '1': 'upvote',
+  '0': ''
+};
+
 export default function Votes({ votes, userHasVoted, parent }) {
   const user = useSelector(state => state.user);
+  const dispatch = useDispatch();
   const [voteData, setVoteData] = useState({voteCount: votes, userHasVoted: userHasVoted});
+  
+  const handleVote = (vote) => {
+    if (!user.id) {
+      return dispatch(showLoginModal());
+    }
 
-  const handleVote = () => {
-    fetch(`/users/${user.id}/likes?${parent.type}_id=${parent.id}`, {
-      method: 'POST'
+    fetch(`/users/${user.id}/likes`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        [`${parent.type}_id`]: parent.id,
+        vote
+      })
     })
       .then(r => {
         if (r.ok) {
           r.json().then(likeData => {
+            console.log(likeData);
             setVoteData({
               voteCount: likeData['post_or_comment']['num_likes'],
               userHasVoted: likeData['post_or_comment']['voted?']
             });
-            console.log(likeData);
           });
         } else {
           r.json().then(console.log);
@@ -52,11 +75,23 @@ export default function Votes({ votes, userHasVoted, parent }) {
       });
   }
 
+  useEffect(() => {
+    setVoteData({voteCount: votes, userHasVoted: userHasVoted});
+  }, [votes, userHasVoted])
+
   return (
     <VotesContainer>
-      <VoteButton onClick={handleVote} className={`${voteData.userHasVoted ? 'voted' : ''}`}>⇧</VoteButton>
+      <VoteButton
+        onClick={() => handleVote(1)}
+        className={VOTE_CLASS[voteData.userHasVoted]}
+        disabled={voteData.userHasVoted === -1}
+      >⇧</VoteButton>
       <div>{voteData.voteCount}</div>
-      <VoteButton disabled>⇩</VoteButton>
+      <VoteButton
+        onClick={() => handleVote(-1)}
+        className={VOTE_CLASS[voteData.userHasVoted]}
+        disabled={voteData.userHasVoted === 1}
+      >⇩</VoteButton>
     </VotesContainer>
   );
 }

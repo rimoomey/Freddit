@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 import PostList from './PostList';
 import { Button } from '../styled-components/Button';
@@ -16,6 +17,7 @@ const PostButton = styled(Button)`
 export default function Topic() {
   const { topic_name: topicName } = useParams();
   const [posts, setPosts] = useState([]);
+  const user = useSelector(state => state.user);
 
   useEffect(() => {
     fetch(`/posts?topic_name=${topicName}`)
@@ -26,7 +28,7 @@ export default function Topic() {
           r.json().then(console.log);
         }
       })
-  }, [topicName]);
+  }, [topicName, user]);
 
   return (
     <main>
