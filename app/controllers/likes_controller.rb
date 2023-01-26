@@ -12,10 +12,9 @@ class LikesController < ApplicationController
     likeable = Comment.find(params[:comment_id]) if params[:comment_id]
     likeable = Post.find(params[:post_id]) if params[:post_id]
 
-    like = Like.create(user: user, likeable: likeable, vote: params[:vote])
+    like = Like.create(like_params)
     if like.valid?
-      likeable.num_likes += params[:vote]
-      likeable.save
+      like.update_likes
       return render json: like, session_user_id: session[:user_id], status: :created
     end
 
@@ -23,6 +22,10 @@ class LikesController < ApplicationController
   end
 
   private
+
+  def like_params
+    params.permit([:user, :likeable, :vote])
+  end
 
   def unauthorized
     render json: { error: 'You do not have permission to view this page' }, status: :unauthorized
