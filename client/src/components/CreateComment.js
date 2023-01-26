@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import AutosizeTextarea from './AutosizeTextarea';
 import { PostButton } from '../styled-components/Button';
 
 export default function CreateComment({ postId, onComment }) {
   const [text, setText] = useState('');
+  const user = useSelector(state => state.user);
 
   const handleChange = e => {
     setText(e.target.value);
@@ -12,13 +14,14 @@ export default function CreateComment({ postId, onComment }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    fetch(`/posts/${postId}/comments`, {
+    fetch(`/users/${user.id}/comments`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        content: text
+        content: text,
+        post_id: postId
       })
     })
       .then(r => {
