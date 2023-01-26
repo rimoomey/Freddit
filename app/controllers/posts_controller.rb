@@ -16,14 +16,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    user = User.find_by(id: params[:user_id])
-    if user&.id == session[:user_id]
+    if @user&.id == session[:user_id]
       post = Post.create(post_params)
       return errors(post) unless post.valid?
 
       topic = Topic.find_or_create_by(name: params[:topic_name])
       post.topic = topic
-      post.user = user
+      post.user = @user
       post.save
       return render json: post, status: :created
     end
@@ -31,20 +30,18 @@ class PostsController < ApplicationController
   end
 
   def update
-    user = User.find_by(id: params[:user_id])
-    if session[:user_id] == user.id
+    if @user&.id == session[:user_id]
       post = Post.find(params[:id])
       post.update(post_params)
       return errors(post) unless post.valid?
 
-      return render json: post, status: :accepted
+      return render json: post, serializer: ExpandedPostsSerializer, status: :accepted
     end
     unauthorized
   end
 
   def destroy
-    user = User.find_by(id: params[:user_id])
-    Post.find(params[:id]).destroy if session[:user_id] == user.id
+    Post.find(params[:id]).destroy if user&.id == session[:user_id]
 
     unauthorized
   end
@@ -53,6 +50,7 @@ class PostsController < ApplicationController
 
   def get_user
     @user = User.find_by(id: params[:user_id])
+    user_not_found if params[:user_id] && @user.nil?
   end
 
   def errors(post)
@@ -69,5 +67,9 @@ class PostsController < ApplicationController
 
   def not_found
     render json: { error: 'Post not found' }, status: :not_found
+  end
+
+  def user_not_found
+    render json: { error: 'User not found' }, status: :not_found
   end
 end
