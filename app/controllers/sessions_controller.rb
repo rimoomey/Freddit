@@ -27,10 +27,10 @@ class SessionsController < ApplicationController
   end
 
   def not_found
-    render json: { error: 'User not found' }, status: :not_found
+    render json: { errors: 'User not found' }, status: :not_found
   end
 
   def incorrect_username_or_password
-    render json: { error: 'incorrect username or password' }, status: :unauthorized
+    render json: { errors: 'incorrect username or password' }, status: :unauthorized
   end
 end
