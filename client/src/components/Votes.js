@@ -59,6 +59,7 @@ export default function Votes({ votes, userHasVoted, parent }) {
       .then(r => {
         if (r.ok) {
           r.json().then(likeData => {
+            console.log(likeData)
             setVoteData({
               voteCount: likeData['post_or_comment']['num_likes'],
               userHasVoted: likeData['post_or_comment']['voted?']

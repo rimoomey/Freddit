@@ -43,7 +43,7 @@ class LikesController < ApplicationController
   end
 
   def change_vote(user, like)
-    original_like = user.likes.find_by(likeable_id: like.likeable_id)
+    original_like = user.likes.find_by(likeable_id: like.likeable_id, likeable_type: like.likeable_type)
     original_like.change_vote(like.vote)
     render json: original_like, session_user_id: session[:user_id], status: :accepted
   end
