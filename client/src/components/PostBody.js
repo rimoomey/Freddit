@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import { UserNameLink } from '../styled-components/UserNameLink'
 import { Section, HDiv } from '../styled-components/Divs'
 import Votes from './Votes'
+import logo from '../assets/fr-logo.png';
+
 
 const Img = styled.img`
   min-width: 12rem;
@@ -19,8 +21,8 @@ export default function PostBody ({ post }) {
     topic,
     num_likes: votes,
     created_at: postDate,
-    thumbnail_url: img,
-    'voted?': userHasVoted
+    'voted?': userHasVoted,
+    thumbnail_url: img
   } = post
 
   return (
@@ -36,7 +38,14 @@ export default function PostBody ({ post }) {
             </UserNameLink>{' '}
             on {postDate.substring(0, 10)}
           </h4>
-          <Img src={img} alt={title} />
+          <Img
+            src={img}
+            alt={title}
+            onError={e => {
+              e.target.onerror = null;
+              e.target.src = logo;
+            }}  
+          />
           <p>{content}</p>
         </div>
       </HDiv>

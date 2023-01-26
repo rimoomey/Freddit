@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import logo from '../assets/fr-logo.png';
 
-
-import { UserNameLink } from '../styled-components/UserNameLink';
 import SignupButton from './SignupButton';
 
 const Icon = styled.img`
@@ -25,11 +23,6 @@ const Head = styled.header`
 
 const SignupDiv = styled.div`
   padding: 0 1em;
-`;
-
-const HeadProfile = styled.div`
-  width: 25%;
-  min-width: fit-content;
 `;
 
 export default function Header () {
