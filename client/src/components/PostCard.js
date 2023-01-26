@@ -6,6 +6,8 @@ import Votes from './Votes';
 
 const PostContainer = styled.div`
   display: flex;
+  flex-direction: row-reverse;
+  justify-content: left;
   align-items: start;
   gap: 0.5em;
 `;
@@ -38,8 +40,6 @@ export default function PostCard({ position, post }) {
 
   return (
     <PostContainer>
-      <Ranking>{position}</Ranking>
-      <Votes votes={votes} userHasVoted={userHasVoted} parent={{type: 'post', id}}/>
       <MyLink to={`/fr/${topic?.name || 'topic'}/${id}`}>
         <PostThumbnail src={img} alt="thumbnail" />
         <section>
@@ -49,6 +49,8 @@ export default function PostCard({ position, post }) {
           </PostDetails>
         </section>
       </MyLink>
+      <Votes votes={votes} userHasVoted={userHasVoted} parent={{type: 'post', id}}/>
+      <Ranking>{position}</Ranking>
     </PostContainer>
   );
 }

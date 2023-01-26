@@ -4,7 +4,6 @@ import { store } from '../store'
 import { RouterProvider } from 'react-router-dom'
 
 import router from '../router'
-
 test('renders freddit icon', () => {
   render(
     <Provider store={store}>
@@ -12,5 +11,5 @@ test('renders freddit icon', () => {
     </Provider>
   )
   const iconElement = screen.getAllByAltText(/icon/i)
-  // expect(iconElement).toBeInTheDocument()
+  expect(iconElement).toBeInTheDocument()
 })
