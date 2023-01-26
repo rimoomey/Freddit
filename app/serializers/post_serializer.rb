@@ -8,7 +8,7 @@ class PostSerializer < ActiveModel::Serializer
     return 0 if user.nil?
 
     user.likes.each do |like|
-      return like.vote if like.likeable_id == object.id
+      return like.vote if like.likeable_id == object.id && like.likeable_type == 'Post'
     end
 
     0
