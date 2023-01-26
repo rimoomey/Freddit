@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button } from '../styled-components/Button'
 import { Link } from 'react-router-dom'
+import { UserNameLink } from '../styled-components/UserNameLink'
 import { useDispatch, useSelector } from 'react-redux'
 import { showLoginModal } from '../features/loginModal/loginModalSlice'
 import logo from '../assets/fr-logo.png';
@@ -46,7 +47,8 @@ export default function Header () {
 
       {user.id ? (
         <div>
-          <p>{user.username}</p>
+          <UserNameLink to={`/users/${user.id}`}>{user.username}</UserNameLink>
+          <hr />
           <Button onClick={() => handleLogout()}>Logout</Button>
         </div>
       ) : (

@@ -1,10 +1,12 @@
 import React, {useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import PostList from './PostList';
 import NavBar from './NavBar';
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
+  const user = useSelector(state => state.user);
 
   useEffect(() => {
     fetch('/posts')
@@ -15,7 +17,7 @@ export default function Home() {
           r.json().then(console.log);
         }
       })
-  }, []);
+  }, [user.id]);
 
   return (
     <main>
