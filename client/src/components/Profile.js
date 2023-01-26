@@ -2,22 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-
-function mapPosts (posts) {
-  return posts.map(post => {
-    return (
-      <li key={post.id}>
-        <h3>
-          Title:{' '}
-          <Link to={`/fr/${post.topic_name}/${post.id}`}>{post.title}</Link>
-        </h3>
-        <h3>
-          Topic: <Link to={`/fr/${post.topic_name}`}>{post.topic_name}</Link>
-        </h3>
-      </li>
-    )
-  })
-}
+import PostList from './PostList'
 
 export default function Profile () {
   const [userName, setUserName] = useState('')
@@ -26,14 +11,15 @@ export default function Profile () {
   const user = useSelector(state => state.user)
   const { id } = useParams()
   useEffect(() => {
-    fetch(`/users/${id}`).then(res => {
+    fetch(`/users/${id}/posts`).then(res => {
       if (res.ok) {
         res.json().then(data => {
-          setUserName(data.username)
-          userName === user.username
-            ? setUserEmail(data.email)
-            : setUserEmail('')
-          setPosts(mapPosts(data.posts))
+          // setUserName(data[0].user.username)
+          // data[0].user.username === user.username
+          //   ? setUserEmail(data[0].user.email)
+          //   : setUserEmail('')
+          console.log(data)
+          setPosts(data.posts)
         })
       } else {
         console.log(res.errors)
@@ -55,7 +41,7 @@ export default function Profile () {
       <h1>{userName}</h1>
       <hr />
       <h3>Posts</h3>
-      <ol>{posts}</ol>
+      <PostList posts={posts} />
       <hr />
     </main>
   )
