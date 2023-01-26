@@ -12,10 +12,20 @@ const LoginUserContainer = styled.form`
   margin: 0.75em;
 `
 
+function errorMap (errors) {
+  return (
+    <ul style={{ color: 'red' }}>
+      {errors.map(error => (
+        <li>{error}</li>
+      ))}
+    </ul>
+  )
+}
+
 export default function LoginForm () {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState(null)
+  const [errors, setErrors] = useState(null)
   const dispatch = useDispatch()
 
 
@@ -36,7 +46,7 @@ export default function LoginForm () {
           dispatch(login(data))
         })
       } else {
-        r.json().then(data => setError(data.error))
+        r.json().then(data => setErrors(data.errors))
       }
     })
   }
@@ -57,7 +67,7 @@ export default function LoginForm () {
         onChange={e => setPassword(e.target.value)}
       />
       <FormInput type='submit' value='Login' />
-      <p style={{color: 'red'}}>{error ? `⚠️ ${error}` : null}</p>
+      <p>{errors ? `⚠️ ${errorMap(errors)}` : null}</p>
     </LoginUserContainer>
   )
 }
