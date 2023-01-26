@@ -29,17 +29,15 @@ const Head = styled.header`
   align-items: center;
   background-color: var(--light-blue);
   border-bottom: 2px solid var(--button-blue);
-`;
+`
 
 const SignupDiv = styled.div`
   padding: 0 1em;
 `;
 
 export default function Header () {
-  
-  const user = useSelector(state => state.user); // user stores user state data
+  const user = useSelector(state => state.user) // user stores user state data
 
-  
   return (
     <Head>
       <TitleContainer to='/'>
@@ -50,13 +48,16 @@ export default function Header () {
         {/* <Title>Freddit</Title> */}
       </TitleContainer>
 
+
       {user.id ? '' : (
         <SignupDiv>
           {/* Signup OR Signout */}
-          <p>Want to join all the REAL front pagers at Freddit? Sign up today!</p>
+          <p>
+            Want to join all the REAL front pagers at Freddit? Sign up today!
+          </p>
           <SignupButton />
         </SignupDiv>
       )}
     </Head>
-  );
+  )
 }
