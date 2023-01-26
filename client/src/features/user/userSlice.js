@@ -13,6 +13,7 @@ export const userSlice = createSlice({
     login: function (state, action) {
       state.username = action.payload.username
       state.id = action.payload.id
+      state.email = action.payload.email
     },
     logout: function (state) {
       state.username = null

@@ -18,7 +18,7 @@ export default function App () {
           r.json().then(data => dispatch(login(data)));
         }
       })
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

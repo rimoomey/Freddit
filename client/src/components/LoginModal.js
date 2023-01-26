@@ -4,6 +4,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import Modal from 'react-modal'
 import { Button } from '../styled-components/Button'
 import { hideLoginModal } from '../features/loginModal/loginModalSlice'
+import ReactModal from 'react-modal'
+
+ReactModal.setAppElement('#root');
 
 const modalStyle = {
   content: {

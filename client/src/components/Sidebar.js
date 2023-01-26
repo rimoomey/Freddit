@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import LoginForm from './LoginForm'
+import LoginForm from './LoginForm';
+import MiniProfile from './MiniProfile';
 import { Button } from '../styled-components/Button'
 
 const Aside = styled.aside`
@@ -22,7 +23,7 @@ export default function Sidebar () {
   const user = useSelector(state => state.user)
   return (
     <Aside>
-      {user.id ? null : <LoginForm />}
+      {user.id ? <MiniProfile /> : <LoginForm />}
       <Link to='/new-post'>
         <Button>Submit a new post</Button>
       </Link>
