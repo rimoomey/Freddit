@@ -11,11 +11,11 @@ const CommentList = styled.ul`
   list-style: none;
 `;
 
-export default function CommentSection({ postId, comments, onComment }) {
+export default function CommentSection({ postId, comments, onComment, onEdit, onDelete }) {
   const user = useSelector(state => state.user);
 
   const commentElements = comments.map((c, idx) =>
-    <Comment key={`comment-${idx}`} comment={c}/>
+    <Comment key={`comment-${idx}`} comment={c} onEdit={onEdit} onDelete={onDelete} />
   );
 
   return (

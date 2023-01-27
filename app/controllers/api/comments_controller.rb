@@ -62,7 +62,7 @@ class Api::CommentsController < ApplicationController
   end
 
   def not_found
-    return json: { errors: ['Comment not found'] }, status: :not_found
+    render json: { errors: ['Comment not found'] }, status: :not_found
   end
 
   def too_many_arguments

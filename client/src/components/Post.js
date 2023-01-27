@@ -24,12 +24,24 @@ export default function Post() {
     const comments = post.sorted_comments;
     setPost({...post, sorted_comments: [...comments, c]});
   }
+  
+  const handleEditComment = editedComment => {
+    const comments = post.sorted_comments;
+    setPost({...post, sorted_comments: comments.map(c =>
+      (c.id === editedComment.id) ? editedComment : c
+    )});
+  }
+
+  const handleDeleteComment = deletedCommentId => {
+    const comments = post.sorted_comments;
+    setPost({...post, sorted_comments: comments.filter(c => c.id !== deletedCommentId)});
+  }
 
   return (
     <main>
       {post.id ? <PostBody post={post} /> : 'Loading...'}
       <hr />
-      <CommentSection comments={post.sorted_comments || []} postId={post.id || -1} onComment={handleNewComment} />
+      <CommentSection comments={post.sorted_comments || []} postId={post.id || -1} onComment={handleNewComment} onEdit={handleEditComment} onDelete={handleDeleteComment} />
     </main>
   );
 }

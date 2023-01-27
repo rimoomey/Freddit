@@ -25,4 +25,18 @@ const PostButton = styled(Button)`
   margin: 0.5em;
 `;
 
-export { Button, PostButton };
+const LinkButton = styled.button`
+  display: inline-block;
+  border: none;
+  background-color: transparent;
+  font-family: inherit;
+  font-weight: bold;
+  color: blue;
+  cursor: pointer;
+
+  &:hover {
+    color: purple;
+  }
+`;
+
+export { Button, PostButton, LinkButton };
