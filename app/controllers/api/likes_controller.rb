@@ -25,6 +25,20 @@ class Api::LikesController < ApplicationController
     errors(user, like)
   end
 
+  def destroy
+    user = User.find(params[:user_id])
+    return unauthorized unless user.id == session[:user_id]
+
+    likeable = Comment.find(params[:comment_id]) if params[:comment_id]
+    likeable = Post.find(params[:post_id]) if params[:post_id]
+    
+    like = Like.find_by(likeable_id: likeable.id, likeable_type: likeable.class.to_s)
+    like.remove_vote
+
+    render json: like, session_user_id: session[:user_id], status: :ok
+    like.destroy
+  end
+
   private
 
   def like_params
@@ -32,7 +46,7 @@ class Api::LikesController < ApplicationController
   end
 
   def unauthorized
-    render json: { errors: ['You do not have permission to view this page'] }, status: :unauthorized
+    render json: { errors: ['You do not have permission to perform this action'] }, status: :unauthorized
   end
 
   def errors(user, like)
@@ -49,6 +63,6 @@ class Api::LikesController < ApplicationController
   end
 
   def not_found
-    render json: { errors: ['No such user found'] }, status: :not_found
+    render json: { errors: ['Record not found'] }, status: :not_found
   end
 end
