@@ -6,9 +6,19 @@ import logo from '../assets/fr-logo.png'
 
 import SignupButton from './SignupButton'
 
+
+const Head = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--light-blue);
+  border-bottom: 2px solid var(--button-blue);
+`
+
 const TitleContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
 `
 
 const IconLink = styled(Link)`
@@ -22,36 +32,29 @@ const Icon = styled.img`
   max-width: 5rem;
   margin: 0.5em 1em;
 `
-// Need to have title outside link, only icon will be linked
+
 const Title = styled.h1`
   color: black;
   text-decoration: none;
-  @media screen and (max-width: 720px){
+  @media screen and (max-width: 720px) {
     display: none;
   }
 `
 const SubTitle = styled.h2`
   color: black;
   text-decoration: none;
-  @media screen and (max-width: 1000px){
+  @media screen and (max-width: 1000px) {
     display: none;
   }
 `
 
-const Head = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--light-blue);
-  border-bottom: 2px solid var(--button-blue);
-`
 
 const SignupDiv = styled.div`
   padding: 0 1em;
 `
 
 const SignupBlurb = styled.p`
-  @media screen and (max-width: 720px){
+  @media screen and (max-width: 720px) {
     display: none;
   }
 `
@@ -65,12 +68,11 @@ export default function Header () {
         <IconLink to='/'>
           <Icon src={logo} alt='icon' />
         </IconLink>
-
-        <Title>{`  Freddit  `}</Title>
-        <hr />
-        <SubTitle>⚠️ This is NOT Reddit ⚠️</SubTitle>
+        <Title>Freddit</Title>
       </TitleContainer>
 
+
+        <SubTitle>⚠️ This is NOT Reddit ⚠️</SubTitle>
       {user.id ? (
         ''
       ) : (

@@ -1,55 +1,42 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import logo from '../assets/fr-logo.png'
 
-import SignupButton from './SignupButton'
-
-const TitleContainer = styled(Link)`
-  display: flex;
-  align-items: end;
-`
-
-const Icon = styled.img`
+const Phantom = styled.div`
   display: block;
+  height: 60px;
   width: 100%;
-  max-width: 5rem;
-  margin: 0.5em 1em;
 `
-const Footer = styled.footer`
+
+const FooterContainer = styled.footer`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   background-color: var(--light-blue);
-  border-bottom: 2px solid var(--button-blue);
+  border-top: 2px solid var(--button-blue);
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
 `
 
-const SignupDiv = styled.div`
-  padding: 0 1em;
+const Acknowledgements = styled.div`
+  display: flex;
+  text-align: center;
 `
 
 export default function Footer () {
-  const user = useSelector(state => state.user) // user stores user state data
-
   return (
-    <Footer>
-      <TitleContainer to='/'>
-        <Icon src={logo} alt='icon' />
-        {/* <Title>Freddit</Title> */}
-      </TitleContainer>
-
-      {user.id ? (
-        ''
-      ) : (
-        <SignupDiv>
-          {/* Signup OR Signout */}
-          <p>
-            Want to join all the REAL front pagers at Freddit? Sign up today!
-          </p>
-          <SignupButton />
-        </SignupDiv>
-      )}
-    </Fo>
+    <>
+      <Phantom />
+      <FooterContainer>
+        <Acknowledgements>
+          <p>🏗️ Built by Scott Meadows, Rimon Moomey, and Ben Merryman</p>
+          <p>⚠️ Student Project for Phase 4 of Flatiron Coding School</p>
+          <p>🚫 THIS IS NOT THE REAL REDDIT</p>
+        </Acknowledgements>
+      </FooterContainer>
+    </>
   )
 }
