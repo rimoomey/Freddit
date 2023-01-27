@@ -1,12 +1,11 @@
 import SignupForm from './SignupForm.js'
-
 import { useSelector, useDispatch } from 'react-redux'
 import Modal from 'react-modal'
 import { Button } from '../styled-components/Button'
 import { hideLoginModal } from '../features/loginModal/loginModalSlice'
 // import ReactModal from 'react-modal'
 
-Modal.setAppElement('#root');
+Modal.setAppElement('#root')
 
 const modalStyle = {
   content: {
@@ -25,6 +24,9 @@ const modalStyle = {
   }
 }
 
+// transition: 'opacity 2s linear'
+// Need to figure out on inject how to get modal animation
+
 export default function LoginModal () {
   const dispatch = useDispatch()
   const showLoginModal = useSelector(state => state.loginModal.show)
@@ -33,7 +35,10 @@ export default function LoginModal () {
   }
 
   return (
-    <Modal isOpen={showLoginModal} style={modalStyle}>
+    <Modal
+      isOpen={showLoginModal}
+      style={modalStyle}
+    >
       <Button
         onClick={onClose}
         style={{ position: 'absolute', top: 10, right: 10 }}
