@@ -17,12 +17,13 @@ const FooterContainer = styled.footer`
   position: fixed;
   left: 0;
   bottom: 0;
-  height: 60px;
+  height: fit-content;
   width: 100%;
 `
 
 const Acknowledgements = styled.div`
   display: flex;
+  flex-direction: column;
   text-align: center;
 `
 
