@@ -2,13 +2,13 @@
 
 Reddit Clone built for Flatiron Phase 4 Backend Project requirement.
 
+Freddit makes use of a PostgreSQL database with the following database structure:
 
-# Day 1 | Models, Design, Framework
+Freddit is currently in an alpha stage of development. While we have implemented user signup, login, and authentication, as well as posting, commenting and upvoted, several features have yet to be implemented.
 
-# Day 2 | Home page, backend structure
 
-# Day 3 | Starting testing, stretch goals
 
-# Day 4 | Polish and final elements
-
-# Day 5 | Build video presentation for send out to recruiters
+Key areas for improvement include:
+- The ability to make nested comment threads
+- The ability to display and edit account information
+- The ability to display user comments via their profile
